@@ -1,0 +1,41 @@
+tools:
+  nodejs: 12.18.2
+  npm: 6.14.5
+
+triggers:
+  - push:
+      # ensure that npm version commit does not trigger another build
+      # by ignoring message used in publish flow below
+      ignoreMessage:
+        - "Release.*"
+  - manual: Run default
+  - manual:
+      name: Publish Major Version Release
+      call: publish(versiontype='major')
+  - manual:
+      name: Publish Minor Version Release
+      call: publish(versiontype='minor')
+  - manual:
+      name: Publish Patch Version Release
+      call: publish(versiontype='patch')
+
+flows:
+  # default flow is run for each commit, add whatever you want to happen then
+  default:
+  - exposeVars(package.json)
+  - echo "Current version is ${package.version}"
+  - npm install --verbose
+
+  publish:
+  - call: default
+  - git diff --quiet && git diff --staged --quiet || git commit -am 'Catchup'
+  # use versionTyp from manual trigger to increase version in package.json
+  - npm version $versiontype -m 'Release %s'
+  - git status && git diff
+  # pull version out of file and log in build output
+  - exposeVars(package.json)
+  - echo "Publishing ${package.version}"
+  # first git ops since you can undo them
+  - git status && git push --follow-tags
+  # publish last, once the binary is in Proximity, it stays
+  - npm publish

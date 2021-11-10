@@ -1,0 +1,28 @@
+{
+  "name": "@walmart/selenium-repl",
+  "version": "6.0.2",
+  "description": "Selenium Webdriver REPL and test suite scaffolding in JavaScript",
+  "main": "main/repl/selenium-repl.js",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "selenium-webdriver": "^4.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "setup": "node setup.js",
+    "start": "node main/repl/selenium-repl.js"
+  },
+  "bin": {
+    "selenium-repl-setup": "./setup.js",
+    "selenium-repl": "./Start.ps1"
+  },
+  "files": [
+    "*"
+  ],
+  "author": "Jeremy Chandler",
+  "repository": {
+    "type": "git",
+    "url": "git://gecgithub01.walmart.com/j0c0erv/Selenium-REPL"
+  },
+  "license": "ISC"
+}
