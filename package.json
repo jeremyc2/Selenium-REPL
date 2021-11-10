@@ -12,10 +12,7 @@
     "setup": "node setup.js",
     "start": "node main/repl/selenium-repl.js"
   },
-  "bin": {
-    "selenium-repl-setup": "./setup.js",
-    "selenium-repl": "./Start.ps1"
-  },
+  "bin": "./Start.ps1",
   "files": [
     "*"
   ],
