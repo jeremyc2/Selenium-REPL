@@ -5,14 +5,9 @@
 ## Before you begin
 1. Make sure you have [NodeJS](https://nodejs.org/en/) installed
 2. If you do not have PowerShell installed, make sure you have downloaded the [Chromedriver](https://chromedriver.chromium.org/downloads) executable
-3. Create a .npmrc file in your home directory if you haven't already. Add the registry URL and your email as follows:
-```
-registry=https://npme.walmart.com
-email=example@walmartlabs.com
-```
 
 ## Quickstart
-Open PowerShell. Enter ```npx @walmart/selenium-repl```.
+Open PowerShell. Enter ```npx selenium-repl```.
 
 ## Setup
 *If you have PowerShell installed, execute ***Setup.ps1*** and skip the remaining setup instructions.*  
@@ -88,10 +83,8 @@ class LoginPage {
 
 module.exports = LoginPage;
 ```
-[Selenium JavaScript Cheatsheet](https://gecgithub01.walmart.com/pages/j0c0erv/Selenium-REPL/selenium-repl-cheatsheet.html)
+[Selenium JavaScript Cheatsheet](https://jeremyc2.github.io/Selenium-REPL/selenium-repl-cheatsheet.html)
 
 [JavaScript API Documentation](https://www.selenium.dev/selenium/docs/api/javascript/)
-
-[Using NPM at Walmart](https://dx.walmart.com/documents/product/Proximity/7drllinbbb#downloading#downloading-packages)
 
 †*If the chromedriver folder is your current directory or if it is in your PATH, you may omit this step.*
