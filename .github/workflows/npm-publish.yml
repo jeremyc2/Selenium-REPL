@@ -27,6 +27,8 @@ jobs:
         with:
           node-version: 14
           registry-url: https://registry.npmjs.org/
+      - run: git config --global user.name 'Selenium-REPL'
+      - run: git config --global user.email 'goldenmeso@gmail.com'
       - run: npm version patch -m "[RELEASE] %s"
       - run: git push
       - run: npm ci
