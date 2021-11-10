@@ -1,5 +1,5 @@
 {
-  "name": "@walmart/selenium-repl",
+  "name": "selenium-repl",
   "version": "6.0.2",
   "description": "Selenium Webdriver REPL and test suite scaffolding in JavaScript",
   "main": "main/repl/selenium-repl.js",
@@ -22,7 +22,7 @@
   "author": "Jeremy Chandler",
   "repository": {
     "type": "git",
-    "url": "git://gecgithub01.walmart.com/j0c0erv/Selenium-REPL"
+    "url": "git://github.com/jeremyc2/Selenium-REPL"
   },
   "license": "ISC"
 }
