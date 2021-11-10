@@ -106,4 +106,4 @@ dist
 # Other
 main/pages/*
 main/tests/*
-chromedriver*
+chromedriver.exe
