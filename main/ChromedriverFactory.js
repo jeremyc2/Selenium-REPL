@@ -2,6 +2,7 @@ const { Builder } = require('selenium-webdriver'),
     { Options } = require('selenium-webdriver/chrome'),
     path = require('path');
 
+// TODO We need to reload the module
 require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
 
 class ChromedriverFactory {
