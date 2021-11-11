@@ -107,3 +107,4 @@ dist
 main/pages/*
 main/tests/*
 chromedriver.exe
+chromedriver
