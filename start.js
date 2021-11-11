@@ -8,7 +8,8 @@ const chromedriverPath = process.argv[2];
 
 function installChromedriver(cb) {
 
-    var script = `Function Install-Chromedriver {
+    var script = `Push-Location ${path.resolve(__dirname)};
+    Function Install-Chromedriver {
     ${fs.readFileSync(path.resolve(__dirname, 'Install-Chromedriver.ps1'))}
     }
     Install-Chromedriver `;
@@ -30,5 +31,9 @@ function installChromedriver(cb) {
 try {
     start(chromedriverPath);
 } catch (e) {
-    installChromedriver(() => start(chromedriverPath));
+    installChromedriver((error, stdout, stderr) => {
+        console.error(error, stderr);
+        console.log(stdout);
+        start(chromedriverPath)
+    });
 }
