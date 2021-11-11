@@ -12,7 +12,7 @@ param (
 )
 
 # Install in $PSScriptRoot by default
-if([string]::IsNullOrEmpty($ChromeDriverOutputPath)) {
+if([string]::IsNullOrEmpty($ChromeDriverOutputPath) && $PSScriptRoot) {
     if($IsWindows -or $Env:OS) {
         $ChromeDriverOutputPath = "$PSScriptRoot/chromedriver.exe";
     } else {
@@ -27,6 +27,9 @@ $ProgressPreference = 'SilentlyContinue';
 
 Function Set-Chromedriver-Location {
     Try {
+        If($PSScriptRoot) {
+             Push-Location $PSScriptRoot
+        }
         npm run setup (Get-ChildItem $ChromeDriverOutputPath).DirectoryName;
     } Catch {
         Throw "Node is not installed";
