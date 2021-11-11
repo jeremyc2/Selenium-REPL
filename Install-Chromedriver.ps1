@@ -12,7 +12,7 @@ param (
 )
 
 # Install in $PSScriptRoot by default
-if([string]::IsNullOrEmpty($ChromeDriverOutputPath) && $PSScriptRoot) {
+if([string]::IsNullOrEmpty($ChromeDriverOutputPath) -and $PSScriptRoot) {
     if($IsWindows -or $Env:OS) {
         $ChromeDriverOutputPath = "$PSScriptRoot/chromedriver.exe";
     } else {
