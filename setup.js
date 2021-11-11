@@ -7,8 +7,4 @@ if(typeof chromedriverPath === 'undefined') return;
 
 const content = `CHROMEDRIVER_PATH="${chromedriverPath}"`;
 
-fs.writeFile(path.resolve(__dirname, '.env'), content, err => {
-    if (err) {
-        console.error(err);
-    }
-});
+fs.writeFileSync(path.resolve(__dirname, '.env'), content);
