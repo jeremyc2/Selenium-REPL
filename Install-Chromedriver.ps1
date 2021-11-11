@@ -28,7 +28,7 @@ $ProgressPreference = 'SilentlyContinue';
 Function Set-Chromedriver-Location {
     Try {
         If($PSScriptRoot) {
-             Push-Location $PSScriptRoot
+             Push-Location $PSScriptRoot;
         }
         npm run setup (Get-ChildItem $ChromeDriverOutputPath).DirectoryName;
     } Catch {
