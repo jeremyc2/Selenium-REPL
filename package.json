@@ -10,9 +10,9 @@
   "devDependencies": {},
   "scripts": {
     "setup": "node setup.js",
-    "start": "node main/repl/selenium-repl.js"
+    "start": "node start.js"
   },
-  "bin": "./Start.ps1",
+  "bin": "./start.js",
   "files": [
     "*"
   ],

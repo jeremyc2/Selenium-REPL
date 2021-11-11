@@ -1,4 +1,3 @@
-#!/usr/bin/env node
 const ChromedriverFactory = require('../ChromedriverFactory'),
     selenium = require('selenium-webdriver'),
     chrome = require('selenium-webdriver/chrome'),
@@ -37,17 +36,23 @@ if(chromedriverPath) {
 var chromeOptions = new chrome.Options()
     .addExtensions(fs.readFileSync(path.resolve(__dirname, '../../css-selector.crx'), { encoding: 'base64' }));
 
-try {
-    buildDriver();
-} catch (e) {
-    throw "Error building chromedriver";
+var myrepl;
+
+module.exports = () => {
+
+    try {
+        buildDriver();
+    } catch (e) {
+        throw "Error building chromedriver";
+    }
+
+    myrepl = require('repl').start();
+
+    Object.assign(myrepl.context, {
+        ...selenium,
+        chrome,
+        buildDriver,
+        get
+    });
+
 }
-
-var myrepl = require('repl').start();
-
-Object.assign(myrepl.context, {
-    ...selenium,
-    chrome,
-    buildDriver,
-    get
-});
