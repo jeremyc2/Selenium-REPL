@@ -1,21 +1,34 @@
 #!/usr/bin/env node
 const { exec } = require('child_process'),
     fs = require('fs'),
-    path = require('path');
+    path = require('path'),
+    start = require('./main/repl/selenium-repl');
+
+const chromedriverPath = process.argv[2];
 
 function installChromedriver(cb) {
 
-    const script = `Function Install-Chromedriver {
+    var script = `Function Install-Chromedriver {
     ${fs.readFileSync(path.resolve(__dirname, 'Install-Chromedriver.ps1'))}
     }
-    Install-Chromedriver ${path.resolve(__dirname)}/chromedriver;`;
+    Install-Chromedriver `;
+    
+    if(chromedriverPath) {
+        script += chromedriverPath;
+    } else {
+        script += `${path.resolve(__dirname)}/chromedriver`;
+    }
 
-    exec(script, {'shell':'pwsh'}, cb);
+    if(process.platform === 'win32') {
+        script += '.exe';
+    }
+
+    exec(script, {'shell': process.platform === 'win32'? 'powershell.exe': 'pwsh'}, cb);
 
 }
 
 try {
-    require('./main/repl/selenium-repl')();
+    start(chromedriverPath);
 } catch (e) {
-    installChromedriver(require('./main/repl/selenium-repl'));
+    installChromedriver(() => start(chromedriverPath));
 }

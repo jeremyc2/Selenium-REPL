@@ -28,17 +28,16 @@ function get(url) {
     }
 }
 
-const chromedriverPath = process.argv[2];
-if(chromedriverPath) {
-    process.env.CHROMEDRIVER_PATH = chromedriverPath;
-}
-
 var chromeOptions = new chrome.Options()
     .addExtensions(fs.readFileSync(path.resolve(__dirname, '../../css-selector.crx'), { encoding: 'base64' }));
 
 var myrepl;
 
-module.exports = () => {
+module.exports = (chromedriverPath) => {
+
+    if(chromedriverPath) {
+        process.env.CHROMEDRIVER_PATH = chromedriverPath;
+    }
 
     try {
         buildDriver();

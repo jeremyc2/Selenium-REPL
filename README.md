@@ -1,6 +1,5 @@
 # Selenium REPL
 <img src="https://github.com/jeremyc2/Selenium-REPL/blob/main/REPL-Infographic.svg" width="400">
-TODO Fix README to remove CHROMEDRIVER_PATH
 
 *Currently only supports testing in Google Chrome*
 ## Before you begin
