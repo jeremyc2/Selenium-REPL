@@ -27,8 +27,6 @@ jobs:
       - run: git config --global user.name 'Selenium-REPL'
       - run: git config --global user.email 'goldenmeso@gmail.com'
       - run: npm version patch -m "[RELEASE] %s"
-      - run: npm install
-      - run: git commit -am "post npm-install"
       - run: git push origin HEAD:main
       - run: npm publish
         env:
