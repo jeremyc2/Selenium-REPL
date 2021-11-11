@@ -28,6 +28,7 @@ jobs:
       - run: git config --global user.email 'goldenmeso@gmail.com'
       - run: npm version patch -m "[RELEASE] %s"
       - run: git push origin HEAD:main
+      - run: npm ci
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
