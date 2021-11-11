@@ -17,10 +17,10 @@ function installChromedriver(cb) {
         script += chromedriverPath;
     } else {
         script += `${path.resolve(__dirname)}/chromedriver`;
-    }
 
-    if(process.platform === 'win32') {
-        script += '.exe';
+        if(process.platform === 'win32') {
+            script += '.exe';
+        }
     }
 
     exec(script, {'shell': process.platform === 'win32'? 'powershell.exe': 'pwsh'}, cb);
