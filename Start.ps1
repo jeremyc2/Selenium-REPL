@@ -1,3 +1,4 @@
+#!/usr/bin/env pwsh
 Push-Location $PSScriptRoot;
 npm start 2> $null;
 If($LASTEXITCODE -eq 1) {
