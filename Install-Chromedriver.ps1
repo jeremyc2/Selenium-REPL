@@ -116,6 +116,7 @@ ElseIf ($IsMacOS) {
     Invoke-WebRequest "https://chromedriver.storage.googleapis.com/$ChromeDriverVersion/chromedriver_mac64.zip" -OutFile $TempZipFilePath;
     Expand-Archive $TempZipFilePath -DestinationPath $TempFileUnzipPath;
     Move-Item "$TempFileUnzipPath/chromedriver" -Destination $ChromeDriverOutputPath -Force;
+    chmod +x "$ChromeDriverOutputPath";
 }
 Else {
     Throw "Your operating system is not supported by this script.";
