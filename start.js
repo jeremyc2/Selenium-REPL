@@ -34,6 +34,6 @@ try {
     installChromedriver((error, stdout, stderr) => {
         console.error(error, stderr);
         console.log(stdout);
-        start(chromedriverPath)
+        start(chromedriverPath);
     });
 }
