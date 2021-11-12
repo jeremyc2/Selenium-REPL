@@ -29,7 +29,7 @@ function get(url) {
 }
 
 function loadSelectorFunctions() {
-    const { $, $$, $x } = require('../utils/selector');
+    const { $, $$, $x } = require('../utils/selector')(myrepl.context.driver);
     Object.assign(myrepl.context, {
         $,
         $$,
