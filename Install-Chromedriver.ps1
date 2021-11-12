@@ -20,6 +20,8 @@ if([string]::IsNullOrEmpty($ChromeDriverOutputPath) -and $PSScriptRoot) {
     }
 }
 
+Write-Output "ChromeDriverOutputPath: $ChromeDriverOutputPath";
+
 # store original preference to revert back later
 $OriginalProgressPreference = $ProgressPreference;
 # setting progress preference to silently continue will massively increase the performance of downloading the ChromeDriver
