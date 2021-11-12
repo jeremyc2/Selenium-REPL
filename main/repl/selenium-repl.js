@@ -51,7 +51,6 @@ module.exports = (chromedriverPath) => {
     try {
         buildDriver();
     } catch (e) {
-        console.error(e);
         throw "Error building chromedriver";
     }
 
