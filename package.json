@@ -1,6 +1,6 @@
 {
   "name": "selenium-repl",
-  "version": "6.0.22",
+  "version": "6.0.23",
   "description": "Selenium Webdriver REPL and test suite scaffolding in JavaScript",
   "main": "main/repl/selenium-repl.js",
   "dependencies": {
