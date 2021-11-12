@@ -17,7 +17,7 @@ function installChromedriver(cb) {
     if(chromedriverPath) {
         script += chromedriverPath;
     } else {
-        script += `${path.resolve(__dirname)}/chromedriver`;
+        script += path.resolve(__dirname, 'chromedriver');
 
         if(process.platform === 'win32') {
             script += '.exe';
