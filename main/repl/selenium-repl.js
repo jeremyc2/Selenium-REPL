@@ -28,6 +28,15 @@ function get(url) {
     }
 }
 
+function loadSelectorFunctions() {
+    const { $, $$, $x } = require('../utils/selector');
+    Object.assign(myrepl.context, {
+        $,
+        $$,
+        $x
+    });
+}
+
 var chromeOptions = new chrome.Options()
     .addExtensions(fs.readFileSync(path.resolve(__dirname, '../../css-selector.crx'), { encoding: 'base64' }));
 
@@ -51,7 +60,8 @@ module.exports = (chromedriverPath) => {
         ...selenium,
         chrome,
         buildDriver,
-        get
+        get,
+        loadSelectorFunctions
     });
 
 }
