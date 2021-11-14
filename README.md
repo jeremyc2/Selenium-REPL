@@ -18,7 +18,7 @@ Open PowerShell. Enter ```npx selenium-repl```.
 *If you have PowerShell installed, execute **Start.ps1** and skip the remaining steps.*
 1. In a Terminal Window, navigate to this repository and enter the command ```npm start```  
 
-Learn about Selenium REPL exclusive functions.  
+[Learn about Selenium REPL exclusive functions](https://github.com/jeremyc2/Selenium-REPL/wiki/Selenium-REPL-Exclusive-Functions).  
 Right-click an element to copy its CSS Selector.
 
 ## Creating Tests
