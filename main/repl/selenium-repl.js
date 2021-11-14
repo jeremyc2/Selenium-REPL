@@ -29,11 +29,12 @@ function get(url) {
 }
 
 function loadSelectorFunctions() {
-    const { $, $$, $x } = require('../utils/selector')(myrepl.context.driver);
+    const { $, $$, $x, $$x } = require('../utils/selector')(myrepl.context.driver);
     Object.assign(myrepl.context, {
         $,
         $$,
-        $x
+        $x,
+        $$x
     });
 }
 
