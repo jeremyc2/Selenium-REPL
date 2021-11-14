@@ -23,6 +23,14 @@ function $x(path, startNode) {
 
     startNode = startNode || driver;
 
+    return startNode.findElement(By.xpath(path));
+}
+
+function $$x(path, startNode) {
+    if(!path) return;
+
+    startNode = startNode || driver;
+
     return startNode.findElements(By.xpath(path));
 }
 
