@@ -40,6 +40,7 @@ module.exports = function(webdriver) {
     return {
         $,
         $$,
-        $x
+        $x,
+        $$x
     }
 }
