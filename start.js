@@ -27,11 +27,11 @@ function installChromedriver(callback) {
     const powershell = spawn(script, {shell: process.platform === 'win32'? 'powershell.exe': 'pwsh'});
     
     powershell.stdout.on('data', (data) => {
-      process.stdout.write(`stdout: ${data}`);
+      process.stdout.write(data.toString());
     });
 
     powershell.stderr.on('data', (data) => {
-      process.stdout.write(`stderr: ${data}`);
+      process.stdout.write(`ERROR: ${data}`);
     });
 
     powershell.on('close', (code) => {
