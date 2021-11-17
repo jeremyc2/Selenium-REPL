@@ -1,12 +1,12 @@
 #!/usr/bin/env node
-const { exec } = require('child_process'),
+const { spawn } = require('child_process'),
     fs = require('fs'),
     path = require('path'),
     start = require('./main/repl/selenium-repl');
 
 const chromedriverPath = process.argv[2];
 
-function installChromedriver(cb) {
+function installChromedriver(callback) {
 
     var script = `Push-Location ${path.resolve(__dirname)};
     Function Install-Chromedriver {
@@ -24,23 +24,30 @@ function installChromedriver(cb) {
         }
     }
 
-    exec(script, {'shell': process.platform === 'win32'? 'powershell.exe': 'pwsh'}, cb);
+    const powershell = spawn(script, {shell: process.platform === 'win32'? 'powershell.exe': 'pwsh'});
+    
+    powershell.stdout.on('data', (data) => {
+      process.stdout.write(`stdout: ${data}`);
+    });
+
+    powershell.stderr.on('data', (data) => {
+      process.stdout.write(`stderr: ${data}`);
+    });
+
+    powershell.on('close', (code) => {
+        
+      if(code == 0) {
+          callback();
+      } else {
+          process.stdout.write(`child process exited with code ${code}`);
+      }
+   
+    });
 
 }
 
 try {
     start(chromedriverPath);
 } catch (e) {
-    installChromedriver((error, stdout, stderr) => {
-        if(error) {
-            console.error(error);
-        }
-        if(stderr) {
-            console.error(stderr);
-        }
-        if(stdout) {
-            console.log(stdout);
-        }
-        start(chromedriverPath);
-    });
+    installChromedriver(() => start(chromedriverPath));
 }
