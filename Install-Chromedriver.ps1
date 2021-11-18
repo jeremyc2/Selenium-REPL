@@ -18,9 +18,8 @@ if([string]::IsNullOrEmpty($ChromeDriverOutputPath) -and $PSScriptRoot) {
     } else {
         $ChromeDriverOutputPath = "$PSScriptRoot/chromedriver";
     }
+    Write-Output "Chromedriver Path: $ChromeDriverOutputPath";
 }
-
-Write-Output "ChromeDriverOutputPath: $ChromeDriverOutputPath";
 
 # store original preference to revert back later
 $OriginalProgressPreference = $ProgressPreference;
