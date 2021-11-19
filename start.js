@@ -66,7 +66,7 @@ async function installChromedriver() {
 
 const script = `node ${
         !compareNodeVersion('16.6.0')? '--experimental-repl-await': ''
-    } -e "require('./main/repl/selenium-repl')('${chromedriverPath}')"`;
+    } -e "require('./main/repl/selenium-repl')(${chromedriverPath? `'${chromedriverPath}'`: ''})"`;
 
 try {
     spawnShell(script);
