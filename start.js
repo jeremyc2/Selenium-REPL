@@ -17,16 +17,24 @@ function compareNodeVersion(version) {
   return true;
 }
 
-async function spawnPowershell(script) {
+async function spawnShell(script, isPowershell) {
     return new Promise((resolve, reject) => {
-        const powershell = spawn(script, {shell: process.platform === 'win32'? 'powershell.exe': 'pwsh', stdio: 'inherit'});
+
+        var opts = {stdio: 'inherit'};
+
+        if(isPowershell) {
+             opts.shell = process.platform === 'win32'? 
+                  'powershell.exe': 'pwsh'
+        }
+
+        const powershell = spawn(script, opts);
     
         powershell.on('close', (code) => {
             
           if(code == 0) {
               resolve();
           } else {
-              process.stdout.write(`child process exited with code ${code}`);
+              console.log(`child process exited with code ${code}`);
               reject();
           }
        
@@ -52,7 +60,7 @@ async function installChromedriver() {
         }
     }
 
-    return spawnPowershell(script);
+    return spawnShell(script, true);
 
 }
 
@@ -63,7 +71,7 @@ const script = `Push-Location ${path.resolve(__dirname)};
     } -e "require('./main/repl/selenium-repl')('${chromedriverPath}')"`;
 
 try {
-    spawnPowershell(script);
+    spawnShell(script);
 } catch (e) {
-    installChromedriver().then(() => spawnPowershell(script));
+    installChromedriver().then(() => spawnShell(script));
 }
