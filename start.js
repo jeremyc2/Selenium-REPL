@@ -25,6 +25,8 @@ async function spawnShell(script, isPowershell) {
         if(isPowershell) {
              opts.shell = process.platform === 'win32'? 
                   'powershell.exe': 'pwsh'
+        } else {
+            opts.shell = true;
         }
 
         const powershell = spawn(script, opts);
@@ -63,15 +65,17 @@ async function installChromedriver() {
 
 }
 
-
 const script = `node ${
         !compareNodeVersion('16.6.0')? '--experimental-repl-await': ''
     } -e "require('./main/repl/selenium-repl')(${
         chromedriverPath? `'${chromedriverPath}'`: ''
     })"`;
 
-try {
-    spawnShell(script);
-} catch (e) {
-    installChromedriver().then(() => spawnShell(script));
-}
+(async () => {
+    try {
+        await spawnShell(script);
+    } catch {
+        await installChromedriver();
+        await spawnShell(script);
+    }
+})()
