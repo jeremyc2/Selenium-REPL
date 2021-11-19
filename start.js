@@ -36,7 +36,6 @@ async function spawnShell(script, isPowershell) {
           if(code == 0) {
               resolve();
           } else {
-              console.log(`child process exited with code ${code}`);
               reject();
           }
        
