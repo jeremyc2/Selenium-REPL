@@ -20,7 +20,7 @@ function compareNodeVersion(version) {
 async function spawnShell(script, isPowershell) {
     return new Promise((resolve, reject) => {
 
-        var opts = {stdio: 'inherit'};
+        var opts = {stdio: 'inherit', cwd: path.resolve(__dirname)};
 
         if(isPowershell) {
              opts.shell = process.platform === 'win32'? 
@@ -44,8 +44,7 @@ async function spawnShell(script, isPowershell) {
 
 async function installChromedriver() {
 
-    var script = `Push-Location ${path.resolve(__dirname)};
-    Function Install-Chromedriver {
+    var script = `Function Install-Chromedriver {
     ${fs.readFileSync(path.resolve(__dirname, 'Install-Chromedriver.ps1'))}
     }
     Install-Chromedriver `;
@@ -65,8 +64,7 @@ async function installChromedriver() {
 }
 
 
-const script = `Push-Location ${path.resolve(__dirname)};
-    node ${
+const script = `node ${
         !compareNodeVersion('16.6.0')? '--experimental-repl-await': ''
     } -e "require('./main/repl/selenium-repl')('${chromedriverPath}')"`;
 
