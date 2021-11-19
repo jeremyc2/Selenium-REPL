@@ -1,12 +1,40 @@
 #!/usr/bin/env node
 const { spawn } = require('child_process'),
     fs = require('fs'),
-    path = require('path'),
-    start = require('./main/repl/selenium-repl');
+    path = require('path');
 
 const chromedriverPath = process.argv[2];
 
-function installChromedriver(callback) {
+function compareNodeVersion(version) {
+  const oldParts = process.version.substring(1).split('.');
+  const newParts = version.split('.');
+  for (var i = 0; i < newParts.length; i++) {
+    const a = parseInt(oldParts[i]);
+    const b = parseInt(newParts[i]);
+    if (a > b) return true;
+    if (a < b) return false;
+  }
+  return true;
+}
+
+async function spawnPowershell(script) {
+    return new Promise((resolve, reject) => {
+        const powershell = spawn(script, {shell: process.platform === 'win32'? 'powershell.exe': 'pwsh', stdio: 'inherit'});
+    
+        powershell.on('close', (code) => {
+            
+          if(code == 0) {
+              resolve();
+          } else {
+              process.stdout.write(`child process exited with code ${code}`);
+              reject();
+          }
+       
+        });
+    });
+}
+
+async function installChromedriver() {
 
     var script = `Push-Location ${path.resolve(__dirname)};
     Function Install-Chromedriver {
@@ -24,30 +52,18 @@ function installChromedriver(callback) {
         }
     }
 
-    const powershell = spawn(script, {shell: process.platform === 'win32'? 'powershell.exe': 'pwsh'});
-    
-    powershell.stdout.on('data', (data) => {
-      process.stdout.write(data.toString());
-    });
-
-    powershell.stderr.on('data', (data) => {
-      process.stdout.write(`ERROR: ${data}`);
-    });
-
-    powershell.on('close', (code) => {
-        
-      if(code == 0) {
-          callback();
-      } else {
-          process.stdout.write(`child process exited with code ${code}`);
-      }
-   
-    });
+    return spawnPowershell(script);
 
 }
 
+
+const script = `Push-Location ${path.resolve(__dirname)};
+    node ${
+        !compareNodeVersion('16.6.0')? '--experimental-repl-await': ''
+    } -e "require('./main/repl/selenium-repl')('${chromedriverPath}')"`;
+
 try {
-    start(chromedriverPath);
+    spawnPowershell(script);
 } catch (e) {
-    installChromedriver(() => start(chromedriverPath));
+    installChromedriver().then(() => spawnPowershell(script));
 }
