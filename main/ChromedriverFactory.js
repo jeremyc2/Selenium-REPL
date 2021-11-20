@@ -15,7 +15,7 @@ class ChromedriverFactory {
         const chromedriverPath = process.env.CHROMEDRIVER_PATH;
 
         if(chromedriverPath && process.env.PATH.split(path.delimiter).every(x => x != chromedriverPath)) {
-            process.env.PATH = chromedriverPath + path.delimiter + process.env.path;
+            process.env.PATH = chromedriverPath + path.delimiter + process.env.PATH;
         }
     }
 
