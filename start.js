@@ -68,7 +68,7 @@ const script = `node ${
         !compareNodeVersion('16.6.0')? '--experimental-repl-await': ''
     } -e "try { require('./main/repl/selenium-repl')(${
         chromedriverPath? `'${chromedriverPath}'`: ''
-    }) catch { process.exit(1) }"`;
+    }) } catch { process.exit(1) }"`;
 
 (async () => {
     try {
