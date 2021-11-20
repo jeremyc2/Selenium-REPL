@@ -52,7 +52,7 @@ module.exports = (chromedriverPath) => {
     try {
         buildDriver();
     } catch (e) {
-        process.exit(1);
+        throw "Error building chromedriver";
     }
 
     myrepl = require('repl').start();
