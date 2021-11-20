@@ -28,7 +28,7 @@ function get(url) {
     }
 }
 
-function loadSelectorFunctions() {
+function importSelectors() {
     const { $, $$, $x, $$x } = require('../utils/selector')(myrepl.context.driver);
     Object.assign(myrepl.context, {
         $,
@@ -62,7 +62,7 @@ module.exports = (chromedriverPath) => {
         chrome,
         buildDriver,
         get,
-        loadSelectorFunctions
+        importSelectors
     });
 
 }
