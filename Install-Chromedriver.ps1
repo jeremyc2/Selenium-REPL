@@ -32,7 +32,13 @@ Function Set-Chromedriver-Location {
              Push-Location $PSScriptRoot;
         }
         npm run setup (Get-ChildItem $ChromeDriverOutputPath).DirectoryName;
+        If($PSScriptRoot) {
+            Pop-Location;
+        }
     } Catch {
+        If($PSScriptRoot) {
+            Pop-Location;
+        }
         Throw "Node is not installed";
     }
 }
