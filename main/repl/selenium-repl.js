@@ -1,8 +1,7 @@
 const ChromedriverFactory = require('../ChromedriverFactory'),
     selenium = require('selenium-webdriver'),
     chrome = require('selenium-webdriver/chrome'),
-    path = require('path'),
-    fs = require('fs');
+    path = require('path');
 
 function buildDriver() {
     var driver = new ChromedriverFactory(chromeOptions).driver;
@@ -39,7 +38,7 @@ function importSelectors() {
 }
 
 var chromeOptions = new chrome.Options()
-    .addExtensions(fs.readFileSync(path.resolve(__dirname, '../../css-selector.crx'), { encoding: 'base64' }));
+    .addExtensions(path.resolve(__dirname, '../../css-selector.crx'));
 
 var myrepl;
 
