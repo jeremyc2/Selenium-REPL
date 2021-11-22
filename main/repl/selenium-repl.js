@@ -38,7 +38,7 @@ function importSelectors() {
 }
 
 var chromeOptions = new chrome.Options()
-    .addExtensions(path.resolve(__dirname, '../../css-selector.crx'));
+    .addArguments(`load-extension=${path.resolve(__dirname, '../../extension')}`);
 
 var myrepl;
 
