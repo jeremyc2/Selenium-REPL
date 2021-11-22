@@ -64,17 +64,29 @@ async function installChromedriver() {
 
 }
 
-const script = `node ${
-        !compareNodeVersion('16.6.0')? '--experimental-repl-await': ''
-    } -e "try { require('./main/repl/selenium-repl')(${
-        chromedriverPath? `'${chromedriverPath}'`: ''
-    }) } catch { process.exit(1) }"`;
+async function startREPL() {
+    const altScript = `node --experimental-repl-await -e 
+        "try { 
+            require('./main/repl/selenium-repl')(${
+                chromedriverPath? `'${chromedriverPath}'`: ''
+            }) 
+         } catch { 
+            process.exit(1) 
+         }"`;
+  
+    if(compareNodeVersion('16.6.0')) {
+        require('./main/repl/selenium-repl')(chromedriverPath);
+    } else {
+        await spawnShell(altScript);
+    }
+    
+}
 
 (async () => {
     try {
-        await spawnShell(script);
+        await startREPL();
     } catch {
         await installChromedriver();
-        await spawnShell(script);
+        await startREPL();
     }
 })()
