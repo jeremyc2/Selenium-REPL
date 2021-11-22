@@ -65,13 +65,13 @@ async function installChromedriver() {
 }
 
 async function startREPL() {
-    const altScript = `node --experimental-repl-await -e 
-        "try { 
+    const altScript = `node --experimental-repl-await -e \
+        "try { \
             require('./main/repl/selenium-repl')(${
                 chromedriverPath? `'${chromedriverPath}'`: ''
-            }) 
-         } catch { 
-            process.exit(1) 
+            }) \
+         } catch { \
+            process.exit(1) \
          }"`;
   
     if(compareNodeVersion('16.6.0')) {
