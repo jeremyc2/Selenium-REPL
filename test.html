@@ -302,6 +302,26 @@ await searchInput.clear();</code></pre>
             <h2 id="remote-webdriver">Remote Webdriver</h2>
             <a href="#toc-container">Table of Contents</a>
             <a href="https://www.selenium.dev/documentation/webdriver/remote_webdriver/" class="source-link">Source</a>
+<pre><code>const { Builder, Capabilities } = require("selenium-webdriver");
+var capabilities = Capabilities.firefox();
+let driver = new Builder()
+    .usingServer("http://example.com")   
+    .withCapabilities(capabilities)
+    .build();</code></pre>
+<pre><code>      
+const { Builder } = require("selenium-webdriver");
+const chrome = require("selenium-webdriver/chrome");
+let opts = new chrome.Options();
+opts.setAcceptInsecureCerts(true);
+opts.setBrowserVersion('67');
+opts.setPlatform('Windows XP');
+let driver = new Builder()
+    .usingServer("http://example.com")
+    .forBrowser('chrome')
+    .setChromeOptions(opts)
+    .build();</code></pre>
+<pre><code>var remote = require('selenium-webdriver/remote');
+driver.setFileDetector(new remote.FileDetector);</code></pre>
         </div>
         <div>
             <h2 id="bidi-apis">BiDi APIs</h2>
