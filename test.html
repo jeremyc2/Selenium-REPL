@@ -117,27 +117,27 @@ let driver = await new Builder().forBrowser('safari').build();</code></pre>
 <pre><code>await driver.navigate().refresh();</code></pre>
 <pre><code>await driver.getTitle();</code></pre>
 <pre><code>await driver.getWindowHandle();</code></pre>
-<pre><code>//Wait for the new window or tab
+<pre><code>// Wait for the new window or tab
 await driver.wait(
     async () => (await driver.getAllWindowHandles()).length === 2,
     10000
 );</code></pre>
-<pre><code>//Loop through until we find a new window handle
+<pre><code>// Loop through until we find a new window handle
 const windows = await driver.getAllWindowHandles();
 windows.forEach(async handle => {
   if (handle !== originalWindow) {
     await driver.switchTo().window(handle);
   }
 });</code></pre>
-<pre><code>//Wait for the new tab to finish loading content
+<pre><code>// Wait for the new tab to finish loading content
 await driver.wait(until.titleIs('Selenium documentation'), 10000);</code></pre>
 <pre><code>// Opens a new tab and switches to new tab
 await driver.switchTo().newWindow('tab');</code></pre>
 <pre><code>// Opens a new window and switches to new window
 await driver.switchTo().newWindow('window');</code></pre>
-<pre><code>//Close the tab or window
+<pre><code>// Close the tab or window
 await driver.close();</code></pre>
-<pre><code>//Switch back to the old tab or window
+<pre><code>// Switch back to the old tab or window
 await driver.switchTo().window(originalWindow);</code></pre>
 <pre><code>// Store the web element
 const iframe = driver.findElement(By.css('#modal > iframe'));
