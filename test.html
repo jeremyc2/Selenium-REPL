@@ -275,7 +275,15 @@ let text = await driver.findElement(By.css('h1')).getText();</code></pre>
         </div>
         <div>
             <h2 id="keyboard">Keyboard</h2>
-            <a href="https://www.selenium.dev/documentation/webdriver/keyboard/">source</a>            
+            <a href="https://www.selenium.dev/documentation/webdriver/keyboard/">source</a>
+<pre><code>// Enter text "webdriver" and perform keyboard action "Enter"
+await driver.findElement(By.name('q')).sendKeys('webdriver', Key.ENTER);</code></pre>
+<pre><code>// Perform action ctrl + A (modifier CONTROL + Alphabet A) to select the page
+await driver.actions().keyDown(Key.CONTROL).sendKeys('a').perform();</code></pre>
+<pre><code>// Enters text "qwerty" with keyDown SHIFT key and after keyUp SHIFT key (QWERTYqwerty)
+await driver.actions().click(search).keyDown(Key.SHIFT).sendKeys("qwerty").keyUp(Key.SHIFT).sendKeys("qwerty").perform();</code></pre>
+<pre><code>// Clear the input field text
+await searchInput.clear();</code></pre>
         </div>
         <div>
             <h2 id="remote-webdriver">Remote Webdriver</h2>
