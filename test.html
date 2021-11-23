@@ -117,6 +117,63 @@ let driver = await new Builder().forBrowser('safari').build();</code></pre>
 <pre><code>await driver.navigate().refresh();</code></pre>
 <pre><code>await driver.getTitle();</code></pre>
 <pre><code>await driver.getWindowHandle();</code></pre>
+<pre><code>//Wait for the new window or tab
+await driver.wait(
+    async () => (await driver.getAllWindowHandles()).length === 2,
+    10000
+);</code></pre>
+<pre><code>//Loop through until we find a new window handle
+const windows = await driver.getAllWindowHandles();
+windows.forEach(async handle => {
+  if (handle !== originalWindow) {
+    await driver.switchTo().window(handle);
+  }
+});</code></pre>
+<pre><code>//Wait for the new tab to finish loading content
+await driver.wait(until.titleIs('Selenium documentation'), 10000);</code></pre>
+<pre><code>// Opens a new tab and switches to new tab
+await driver.switchTo().newWindow('tab');</code></pre>
+<pre><code>// Opens a new window and switches to new window
+await driver.switchTo().newWindow('window');</code></pre>
+<pre><code>//Close the tab or window
+await driver.close();</code></pre>
+<pre><code>//Switch back to the old tab or window
+await driver.switchTo().window(originalWindow);</code></pre>
+<pre><code>// Store the web element
+const iframe = driver.findElement(By.css('#modal > iframe'));
+// Switch to the frame
+await driver.switchTo().frame(iframe);</code></pre>
+<pre><code>// Using the ID
+await driver.switchTo().frame('buttonframe');</code></pre>
+<pre><code>// Or using the name instead
+await driver.switchTo().frame('myframe');</code></pre>
+<pre><code>// Switches to the second frame
+await driver.switchTo().frame(1);</code></pre>
+<pre><code>// Return to the top level
+await driver.switchTo().defaultContent();</code></pre>
+<pre><code>const { width, height } = await driver.manage().window().getRect();</code></pre>
+<pre><code>await driver.manage().window().setRect({ width: 1024, height: 768 });</code></pre>
+<pre><code>const { x, y } = await driver.manage().window().getRect();</code></pre>
+<pre><code>// Move the window to the top left of the primary monitor
+await driver.manage().window().setRect({ x: 0, y: 0 });</code></pre>
+<pre><code>await driver.manage().window().maximize();</code></pre>
+<pre><code>await driver.manage().window().minimize();</code></pre>
+<pre><code>await driver.manage().window().fullscreen();</code></pre>
+<pre><code>// Returns base64 encoded string
+let encodedString = await driver.takeScreenshot();
+await fs.writeFileSync('./image.png', encodedString, 'base64');</code></pre>
+<pre><code>// Captures the element screenshot
+let encodedString = await element.takeScreenshot(true);
+await fs.writeFileSync('./image.png', encodedString, 'base64');</code></pre>
+<pre><code>// Executing JavaScript to capture innerText of header element
+let text = await driver.executeScript('return arguments[0].innerText', header);</code></pre>
+<pre><code>// Print page as PDF
+try {
+    let base64 = await driver.printPage({pageRanges:["1-2"]});
+    await fs.writeFileSync('./test.pdf', base64, 'base64');
+} catch (e) {
+    console.log(e)
+}</code></pre>
         </div>
         <div>
             <h2 id="locating-elements">Locating elements</h2>
