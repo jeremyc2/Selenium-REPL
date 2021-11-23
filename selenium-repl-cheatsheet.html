@@ -327,6 +327,37 @@ driver.setFileDetector(new remote.FileDetector);</code></pre>
             <h2 id="bidi-apis">BiDi APIs</h2>
             <a href="#toc-container">Table of Contents</a>
             <a href="https://www.selenium.dev/documentation/webdriver/bidi_apis/" class="source-link">Source</a>
+<pre><code>const pageCdpConnection = await driver.createCDPConnection('page');
+await driver.register('username', 'password', pageCdpConnection);</code></pre>
+<pre><code>const cdpConnection = await driver.createCDPConnection('page');
+await driver.logMutationEvents(cdpConnection, event => {
+    assert.deepStrictEqual(event['attribute_name'], 'style');
+    assert.deepStrictEqual(event['current_value'], "");
+    assert.deepStrictEqual(event['old_value'], "display:none;");
+});</code></pre>
+<pre><code>const cdpConnection = await driver.createCDPConnection('page');
+await driver.onLogEvent(cdpConnection, function (event) {
+    console.log(event['args'][0]['value']);
+});
+await driver.executeScript('console.log("here")');</code></pre>
+<pre><code>const cdpConnection = await driver.createCDPConnection('page')
+await driver.onLogException(cdpConnection, function (event) {
+    console.log(event['exceptionDetails']);
+})</code></pre>
+<pre><code>await driver.sendAndGetDevToolsCommand('Performance.enable')
+
+let result = await driver.sendAndGetDevToolsCommand('Performance.getMetrics')
+console.log(result)</code></pre>
+<pre><code>const connection = await driver.createCDPConnection()
+let url = fileServer.whereIs("/cheese")
+let httpResponse = new HttpResponse(url)
+httpResponse.addHeaders("Content-Type", "UTF-8")
+httpResponse.body = "sausages"
+await driver.onIntercept(connection, httpResponse, async function () {
+    let body = await driver.getPageSource()
+    assert.strictEqual(body.includes("sausages"), true, `Body contains: ${body}`)
+})
+driver.get(url)</code></pre>
         </div>
         <div>
             <h2 id="driver-specific-capabilities">Driver specific capabilities</h2>
