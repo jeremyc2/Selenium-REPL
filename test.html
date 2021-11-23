@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Selenium REPL Cheatsheet</title>
+    <link href="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/themes/prism.css" rel="stylesheet" />
+    <style>
+        .main {
+            width:fit-content
+        }
+    </style>
+</head>
+<body class="language-javascript">
+    <div class="toc">
+        <a href="#general-example">General example</a><br />
+        <a href="#installing-browser-drivers">Installing browser drivers</a><br />
+        <a href="#browser-manipulation">Browser manipulation</a><br />
+        <a href="#locating-elements">Locating elements</a><br />
+        <a href="#waits">Waits</a><br />
+        <a href="#js-alerts-prompts-and-confirmations">JS alerts, prompts, and confirmations</a><br />
+        <a href="#http-proxies">HTTP proxies</a><br />
+        <a href="#page-loading-strategy">Page loading strategy</a><br />
+        <a href="#web-element">Web Element</a><br />
+        <a href="#keyboard">Keyboard</a><br />
+        <a href="#remote-webdriver">Remote Webdriver</a><br />
+        <a href="#bidi-apis">BiDi APIs</a><br />
+        <a href="#driver-specific-capabilities">Driver specific capabilities</a><br />
+        <a href="#on-test-automation">On test automation</a><br />
+        <a href="#mouse-and-keyboard-actions-in-detail">Mouse and keyboard actions in detail</a><br />
+        <a href="#working-with-cookies">Working with cookies</a><br />
+        <a href="#chrome-devtools">Chrome devtools</a><br />
+    </div>
+    <div class="main">
+        <div>
+            <h1 id="general-example">General example</h1>
+            <a href="https://www.selenium.dev/documentation/">source</a>
+<pre><code>const {Builder, By, Key, until} = require('selenium-webdriver');
+let driver = await new Builder().forBrowser('firefox').build();
+try {
+    // Navigate to Url
+    await driver.get('https://www.google.com');
+
+    // Enter text "cheese" and perform keyboard action "Enter"
+    await driver.findElement(By.name('q')).sendKeys('cheese', Key.ENTER);
+
+    let firstResult = await driver.wait(until.elementLocated(By.css('h3')), 10000);
+
+    console.log(await firstResult.getAttribute('textContent'));
+}
+finally{
+    await driver.quit();
+}</code></pre>
+        </div>
+        <div>
+            <h1 id="installing-browser-drivers">Installing browser drivers</h1>
+            <a href="https://www.selenium.dev/documentation/getting_started/installing_browser_drivers/">source</a>            
+        </div>
+        <div>
+            <h1 id="browser-manipulation">Browser manipulation</h1>
+            <a href="https://www.selenium.dev/documentation/webdriver/browser_manipulation/">source</a>
+        </div>
+        <div>
+            <h1 id="locating-elements">Locating elements</h1>
+            <a href="https://www.selenium.dev/documentation/webdriver/locating_elements/">source</a>
+        </div>
+        <div>
+            <h1 id="waits">Waits</h1>
+            <a href="https://www.selenium.dev/documentation/webdriver/waits/">source</a>
+        </div>
+        <div>
+            <h1 id="js-alerts-prompts-and-confirmations">JS alerts, prompts, and confirmations</h1>
+            <a href="https://www.selenium.dev/documentation/webdriver/js_alerts_prompts_and_confirmations/">source</a>            
+        </div>
+        <div>
+            <h1 id="http-proxies">HTTP proxies</h1>
+            <a href="https://www.selenium.dev/documentation/webdriver/http_proxies/">source</a>            
+        </div>
+        <div>
+            <h1 id="page-loading-strategy">Page loading strategy</h1>
+            <a href="https://www.selenium.dev/documentation/webdriver/page_loading_strategy/">source</a>            
+        </div>
+        <div>
+            <h1 id="web-element">Web Element</h1>
+            <a href="https://www.selenium.dev/documentation/webdriver/web_element/">source</a>            
+        </div>
+        <div>
+            <h1 id="keyboard">Keyboard</h1>
+            <a href="https://www.selenium.dev/documentation/webdriver/keyboard/">source</a>            
+        </div>
+        <div>
+            <h1 id="remote-webdriver">Remote Webdriver</h1>
+            <a href="https://www.selenium.dev/documentation/webdriver/remote_webdriver/">source</a>
+        </div>
+        <div>
+            <h1 id="bidi-apis">BiDi APIs</h1>
+            <a href="https://www.selenium.dev/documentation/webdriver/bidi_apis/">source</a>
+        </div>
+        <div>
+            <h1 id="driver-specific-capabilities">Driver specific capabilities</h1>
+            <a href="https://www.selenium.dev/documentation/webdriver/capabilities/driver_specific_capabilities/">source</a>
+        </div>
+        <div>
+            <h1 id="on-test-automation">On test automation</h1>
+            <a href="https://www.selenium.dev/documentation/guidelines/on_test_automation/">source</a>
+        </div>
+        <div>
+            <h1 id="mouse-and-keyboard-actions-in-detail">Mouse and keyboard actions in detail</h1>
+            <a href="https://www.selenium.dev/documentation/support_packages/mouse_and_keyboard_actions_in_detail/">source</a>            
+        </div>
+        <div>
+            <h1 id="working-with-cookies">Working with cookies</h1>
+            <a href="https://www.selenium.dev/documentation/support_packages/working_with_cookies/">source</a>            
+        </div>
+        <div>
+            <h1 id="chrome-devtools">Chrome devtools</h1>
+            <a href="https://www.selenium.dev/documentation/support_packages/chrome_devtools/">source</a>            
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-core.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</body>
+</html>
