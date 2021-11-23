@@ -43,6 +43,9 @@
             color: black;
             font-size: 1.15rem;
         }
+        a.source-link {
+            float: right;
+        }
     </style>
 </head>
 <body class="language-javascript">
@@ -72,7 +75,8 @@
     <div class="main">
         <div>
             <h2 id="general-example">General example</h2>
-            <a href="https://www.selenium.dev/documentation/">source</a>
+            <a href="#toc-container">Table of Contents</a>
+            <a href="https://www.selenium.dev/documentation/" class="source-link">Source</a>
 <pre><code>const {Builder, By, Key, until} = require('selenium-webdriver');
 let driver = await new Builder().forBrowser('firefox').build();
 try {
@@ -92,7 +96,8 @@ finally {
         </div>
         <div>
             <h2 id="installing-browser-drivers">Installing browser drivers</h2>
-            <a href="https://www.selenium.dev/documentation/getting_started/installing_browser_drivers/">source</a>
+            <a href="#toc-container">Table of Contents</a>
+            <a href="https://www.selenium.dev/documentation/getting_started/installing_browser_drivers/" class="source-link">Source</a>
 <pre><code>const {Builder} = require('selenium-webdriver');
 let driver = await new Builder().forBrowser('chrome').build();</code></pre>
 <pre><code>const {Builder} = require('selenium-webdriver');
@@ -109,7 +114,8 @@ let driver = await new Builder().forBrowser('safari').build();</code></pre>
         </div>
         <div>
             <h2 id="browser-manipulation">Browser manipulation</h2>
-            <a href="https://www.selenium.dev/documentation/webdriver/browser_manipulation/">source</a>
+            <a href="#toc-container">Table of Contents</a>
+            <a href="https://www.selenium.dev/documentation/webdriver/browser_manipulation/" class="source-link">Source</a>
 <pre><code>await driver.get('https://selenium.dev');</code></pre>
 <pre><code>await driver.getCurrentUrl();</code></pre>
 <pre><code>await driver.navigate().back();</code></pre>
@@ -177,7 +183,8 @@ try {
         </div>
         <div>
             <h2 id="locating-elements">Locating elements</h2>
-            <a href="https://www.selenium.dev/documentation/webdriver/locating_elements/">source</a>
+            <a href="#toc-container">Table of Contents</a>
+            <a href="https://www.selenium.dev/documentation/webdriver/locating_elements/" class="source-link">Source</a>
 <pre><code>const cheese = driver.findElement(By.id('cheese'));</code></pre>
 <pre><code>const cheddar = driver.findElement(By.css('#cheese #cheddar'));</code></pre>
 <pre><code>let passwordField = driver.findElement(By.id('password'));
@@ -193,7 +200,8 @@ let emailAddressField = await driver.findElement(locateWith(By.tagName("input"))
         </div>
         <div>
             <h2 id="waits">Waits</h2>
-            <a href="https://www.selenium.dev/documentation/webdriver/waits/">source</a>
+            <a href="#toc-container">Table of Contents</a>
+            <a href="https://www.selenium.dev/documentation/webdriver/waits/" class="source-link">Source</a>
 <pre><code>const documentInitialised = () =>
     driver.executeScript('return initialised');
 
@@ -210,7 +218,8 @@ let foo = await driver.wait(until.elementLocated(By.id('foo')), 30000, 'Timed ou
         </div>
         <div>
             <h2 id="js-alerts-prompts-and-confirmations">JS alerts, prompts, and confirmations</h2>
-            <a href="https://www.selenium.dev/documentation/webdriver/js_alerts_prompts_and_confirmations/">source</a>
+            <a href="#toc-container">Table of Contents</a>
+            <a href="https://www.selenium.dev/documentation/webdriver/js_alerts_prompts_and_confirmations/" class="source-link">Source</a>
 <pre><code>// Wait for the alert to be displayed
 await driver.wait(until.alertIsPresent());
 
@@ -226,7 +235,8 @@ await alert.accept();</code></pre>
         </div>
         <div>
             <h2 id="http-proxies">HTTP proxies</h2>
-            <a href="https://www.selenium.dev/documentation/webdriver/http_proxies/">source</a>
+            <a href="#toc-container">Table of Contents</a>
+            <a href="https://www.selenium.dev/documentation/webdriver/http_proxies/" class="source-link">Source</a>
 <pre><code>let webdriver = require('selenium-webdriver');
 let chrome = require('selenium-webdriver/chrome');
 let proxy = require('selenium-webdriver/proxy');
@@ -240,7 +250,8 @@ let driver = new webdriver.Builder()
         </div>
         <div>
             <h2 id="page-loading-strategy">Page loading strategy</h2>
-            <a href="https://www.selenium.dev/documentation/webdriver/page_loading_strategy/">source</a>
+            <a href="#toc-container">Table of Contents</a>
+            <a href="https://www.selenium.dev/documentation/webdriver/page_loading_strategy/" class="source-link">Source</a>
 <pre><code>const {Builder, Capabilities} = require('selenium-webdriver');
 const caps = new Capabilities();
 caps.setPageLoadStrategy("normal");
@@ -253,7 +264,8 @@ let driver = await new Builder().
         </div>
         <div>
             <h2 id="web-element">Web Element</h2>
-            <a href="https://www.selenium.dev/documentation/webdriver/web_element/">source</a>
+            <a href="#toc-container">Table of Contents</a>
+            <a href="https://www.selenium.dev/documentation/webdriver/web_element/" class="source-link">Source</a>
 <pre><code>// Type into an element
 element.sendKeys('Input Text');</code></pre>
 <pre><code>// Get all the elements available with tag 'p'
@@ -275,7 +287,8 @@ let text = await driver.findElement(By.css('h1')).getText();</code></pre>
         </div>
         <div>
             <h2 id="keyboard">Keyboard</h2>
-            <a href="https://www.selenium.dev/documentation/webdriver/keyboard/">source</a>
+            <a href="#toc-container">Table of Contents</a>
+            <a href="https://www.selenium.dev/documentation/webdriver/keyboard/" class="source-link">Source</a>
 <pre><code>// Enter text "webdriver" and perform keyboard action "Enter"
 await driver.findElement(By.name('q')).sendKeys('webdriver', Key.ENTER);</code></pre>
 <pre><code>// Perform action ctrl + A (modifier CONTROL + Alphabet A) to select the page
@@ -287,31 +300,38 @@ await searchInput.clear();</code></pre>
         </div>
         <div>
             <h2 id="remote-webdriver">Remote Webdriver</h2>
-            <a href="https://www.selenium.dev/documentation/webdriver/remote_webdriver/">source</a>
+            <a href="#toc-container">Table of Contents</a>
+            <a href="https://www.selenium.dev/documentation/webdriver/remote_webdriver/" class="source-link">Source</a>
         </div>
         <div>
             <h2 id="bidi-apis">BiDi APIs</h2>
-            <a href="https://www.selenium.dev/documentation/webdriver/bidi_apis/">source</a>
+            <a href="#toc-container">Table of Contents</a>
+            <a href="https://www.selenium.dev/documentation/webdriver/bidi_apis/" class="source-link">Source</a>
         </div>
         <div>
             <h2 id="driver-specific-capabilities">Driver specific capabilities</h2>
-            <a href="https://www.selenium.dev/documentation/webdriver/capabilities/driver_specific_capabilities/">source</a>
+            <a href="#toc-container">Table of Contents</a>
+            <a href="https://www.selenium.dev/documentation/webdriver/capabilities/driver_specific_capabilities/" class="source-link">Source</a>
         </div>
         <div>
             <h2 id="on-test-automation">On test automation</h2>
-            <a href="https://www.selenium.dev/documentation/guidelines/on_test_automation/">source</a>
+            <a href="#toc-container">Table of Contents</a>
+            <a href="https://www.selenium.dev/documentation/guidelines/on_test_automation/" class="source-link">Source</a>
         </div>
         <div>
             <h2 id="mouse-and-keyboard-actions-in-detail">Mouse and keyboard actions in detail</h2>
-            <a href="https://www.selenium.dev/documentation/support_packages/mouse_and_keyboard_actions_in_detail/">source</a>            
+            <a href="#toc-container">Table of Contents</a>
+            <a href="https://www.selenium.dev/documentation/support_packages/mouse_and_keyboard_actions_in_detail/" class="source-link">Source</a>            
         </div>
         <div>
             <h2 id="working-with-cookies">Working with cookies</h2>
-            <a href="https://www.selenium.dev/documentation/support_packages/working_with_cookies/">source</a>            
+            <a href="#toc-container">Table of Contents</a>
+            <a href="https://www.selenium.dev/documentation/support_packages/working_with_cookies/" class="source-link">Source</a>            
         </div>
         <div>
             <h2 id="chrome-devtools">Chrome devtools</h2>
-            <a href="https://www.selenium.dev/documentation/support_packages/chrome_devtools/">source</a>            
+            <a href="#toc-container">Table of Contents</a>
+            <a href="https://www.selenium.dev/documentation/support_packages/chrome_devtools/" class="source-link">Source</a>            
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-core.min.js"></script>
