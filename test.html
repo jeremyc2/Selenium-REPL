@@ -332,6 +332,25 @@ driver.setFileDetector(new remote.FileDetector);</code></pre>
             <h2 id="driver-specific-capabilities">Driver specific capabilities</h2>
             <a href="#toc-container">Table of Contents</a>
             <a href="https://www.selenium.dev/documentation/webdriver/capabilities/driver_specific_capabilities/" class="source-link">Source</a>
+<pre><code>const { Builder } = require("selenium-webdriver");
+const firefox = require('selenium-webdriver/firefox');
+
+const options = new firefox.Options();
+options.headless();
+const driver = new Builder()
+    .forBrowser('firefox')
+    .setFirefoxOptions(options)
+    .build();</code></pre>
+<pre><code>const { Builder } = require("selenium-webdriver");
+const firefox = require('selenium-webdriver/firefox');
+
+const options = new firefox.Options();
+let profile = '/path to custom profile';
+options.setProfile(profile);
+const driver = new Builder()
+    .forBrowser('firefox')
+    .setFirefoxOptions(options)
+    .build();</code></pre>
         </div>
         <div>
             <h2 id="on-test-automation">On test automation</h2>
