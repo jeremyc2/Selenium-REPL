@@ -500,6 +500,37 @@ console.log(await driver.manage().getCookie('key'));</code></pre>
             <h2 id="chrome-devtools">Chrome devtools</h2>
             <a href="#toc-container">Table of Contents</a>
             <a href="https://www.selenium.dev/documentation/support_packages/chrome_devtools/" class="source-link">Source</a>            
+<pre><code>const pageCdpConnection = await driver.createCDPConnection('page');
+//Latitude and longitude of Tokyo, Japan
+const coordinates = {
+    latitude: 35.689487,
+    longitude: 139.691706,
+    accuracy: 100,
+};
+await pageCdpConnection.execute(
+    "Emulation.setGeolocationOverride",
+    1,
+    coordinates
+);</code></pre>
+<pre><code>const {Builder} = require('selenium-webdriver');
+const firefox = require('selenium-webdriver/firefox');
+const options = new firefox.Options();
+// enable debugger for CDP
+options.enableDebugger();
+
+let driver = await new Builder().forBrowser('firefox').setFirefoxOptions(options).build();
+const pageCdpConnection = await driver.createCDPConnection('page');
+const metrics = {
+    width: 300,
+    height: 200,
+    deviceScaleFactor: 50,
+    mobile: true,
+};
+await pageCdpConnection.execute(
+    "Emulation.setDeviceMetricsOverride",
+    1,
+    metrics
+);</code></pre>
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-core.min.js"></script>
