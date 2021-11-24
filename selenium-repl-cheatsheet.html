@@ -423,11 +423,78 @@ assert(unicornConfirmationPage.exists(sparkles), "Sparkles should have been crea
             <h2 id="mouse-and-keyboard-actions-in-detail">Mouse and keyboard actions in detail</h2>
             <a href="#toc-container">Table of Contents</a>
             <a href="https://www.selenium.dev/documentation/support_packages/mouse_and_keyboard_actions_in_detail/" class="source-link">Source</a>            
+<pre><code>// Press and hold
+const actions = driver.actions({async: true});
+// Perform mouseMove to element and mouseDown (press) action on the element
+await actions.move({origin:searchBtn}).press().perform();</code></pre>
+<pre><code>const actions = driver.actions({async: true});
+// Perform context-click action on the element
+await actions.contextClick(searchBtn).perform();</code></pre>
+<pre><code>const actions = driver.actions({async: true});
+// Perform double-click action on the element
+await actions.doubleClick(searchBtn).perform();</code></pre>
+<pre><code>// Move to element
+const actions = driver.actions({async: true});
+// Performs mouse move action onto the element
+await actions.move({origin:gmailLink}).perform();</code></pre>
+<pre><code>// Move by offset
+// Capture offset positions of element
+let offset = await gmailLink.getRect();
+let x = await offset.x;
+let y = await offset.y;
+const actions = driver.actions({async: true});
+// Performs mouse move action onto the element
+await actions.move({x:parseInt(x),y:parseInt(y)}).pause(3000).perform();</code></pre>
+<pre><code>// Drag and drop
+// Store 'box A' as source element
+let sourceEle = driver.findElement(By.id("draggable"));
+// Store 'box B' as source element
+let targetEle = driver.findElement(By.id("droppable"));
+const actions = driver.actions({async: true});
+// Performs drag and drop action of sourceEle onto the targetEle
+await actions.dragAndDrop(sourceEle, targetEle).perform();</code></pre>
+<pre><code>// Drag and drop by offset
+// Store 'box A' as source element
+let sourceEle = driver.findElement(By.id("draggable"));
+// Store 'box B' as source element
+let targetEle = driver.findElement(By.id("droppable"));
+let offset = await targetEle.getRect();
+let x = await offset.x;
+let y = await offset.y;
+const actions = driver.actions({async: true});
+// Performs dragAndDropBy onto the  target element offset position
+await actions.dragAndDrop(sourceEle, {x:parseInt(x), y:parseInt(y)}).perform();</code></pre>
+<pre><code>// Store 'box A' as source element
+let sourceEle = driver.findElement(By.id("draggable"));
+// Store 'box B' as source element
+let targetEle = driver.findElement(By.id("droppable"));
+const actions = driver.actions({async: true});
+await actions.move({origin:sourceEle}).press().perform();
+// Performs release event on target element
+await actions.move({origin:targetEle}).release().perform();</code></pre>
         </div>
         <div>
             <h2 id="working-with-cookies">Working with cookies</h2>
             <a href="#toc-container">Table of Contents</a>
             <a href="https://www.selenium.dev/documentation/support_packages/working_with_cookies/" class="source-link">Source</a>            
+<pre><code>// set a cookie on the current domain
+await driver.manage().addCookie({name:'key', value: 'value'});</code></pre>
+<pre><code>// Get cookie details with named cookie 'foo' 
+driver.manage().getCookie('foo').then(function (cookie) {
+    console.log('cookie details => ', cookie);
+});</code></pre>
+<pre><code>// Get all Available cookies
+driver.manage().getCookies().then(function (cookies) {
+    console.log('cookie details => ', cookies);
+});</code></pre>
+<pre><code>// Delete a cookie with name 'test1'
+await driver.manage().deleteCookie('test1');</code></pre>
+<pre><code>// Delete all cookies
+await driver.manage().deleteAllCookies();</code></pre>
+<pre><code>// set a cookie on the current domain with sameSite 'Strict' (or) 'Lax'
+await driver.manage().addCookie({name:'key', value: 'value', sameSite:'Strict'});
+await driver.manage().addCookie({name:'key', value: 'value', sameSite:'Lax'});
+console.log(await driver.manage().getCookie('key'));</code></pre>
         </div>
         <div>
             <h2 id="chrome-devtools">Chrome devtools</h2>
