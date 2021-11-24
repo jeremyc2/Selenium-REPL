@@ -205,12 +205,8 @@ await fs.writeFileSync('./image.png', encodedString, 'base64');</code></pre>
 <pre><span>copy</span><code>// Executing JavaScript to capture innerText of header element
 let text = await driver.executeScript('return arguments[0].innerText', header);</code></pre>
 <pre><span>copy</span><code>// Print page as PDF
-try {
-    let base64 = await driver.printPage({pageRanges:["1-2"]});
-    await fs.writeFileSync('./test.pdf', base64, 'base64');
-} catch (e) {
-    console.log(e)
-}</code></pre>
+let base64 = await driver.printPage({pageRanges:["1-2"]});
+await fs.writeFileSync('./test.pdf', base64, 'base64');</code></pre>
         </div>
         <div>
             <h2 id="locating-elements">Locating elements</h2>
