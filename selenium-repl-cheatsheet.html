@@ -10,6 +10,13 @@
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon_io/favicon-16x16.png">
     <link href="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/themes/prism-okaidia.css" rel="stylesheet" />
     <style>
+        body {
+            margin: 10px;
+        }
+        .app {
+            display: flex;
+            gap: 10px;
+        }
         .main {
             width: -moz-fit-content;
             width: fit-content;
@@ -27,6 +34,9 @@
             border-bottom: 2px solid black;
         }
         #toc-container {
+            position: sticky;
+            top: 10px;
+            align-self: flex-start;
             background: #f9f9f9 none repeat scroll 0 0;
             border: 1px solid #aaa;
             display: table;
@@ -77,10 +87,19 @@
             user-select: none;
             cursor: pointer;
         }
+        @media (max-width: 750px) {
+            .app {
+                flex-direction: column;
+            }
+            #toc-container {
+                position: unset;
+            }
+        }
     </style>
 </head>
 <body class="language-javascript">
     <h1>Selenium REPL Cheatsheet</h1>
+    <div class="app">
     <div id="toc-container">
         <div class="toc-title">Contents</div>
         <ul>
@@ -559,6 +578,7 @@ await pageCdpConnection.execute(
     metrics
 );</code></pre>
         </div>
+    </div>
     </div>
     <script>
         document.querySelectorAll('pre > span').forEach(el => {
