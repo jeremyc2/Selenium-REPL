@@ -1,5 +1,5 @@
 # Selenium REPL
-<img src="https://github.com/jeremyc2/Selenium-REPL/blob/main/REPL-Infographic.svg" width="400">
+<img src="https://jeremyc2.github.io/Selenium-REPL/REPL-Infographic.svg" width="400">
 
 *Currently only supports testing in Google Chrome*
 ## Before you begin
