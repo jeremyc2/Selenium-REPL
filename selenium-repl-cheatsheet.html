@@ -240,15 +240,15 @@ await fs.writeFileSync('./test.pdf', base64, 'base64');</code></pre>
 <pre><span>copy</span><code>const cheese = driver.findElement(By.id('cheese'));</code></pre>
 <pre><span>copy</span><code>const cheddar = driver.findElement(By.css('#cheese #cheddar'));</code></pre>
 <pre><span>copy</span><code>let passwordField = driver.findElement(By.id('password'));
-let emailAddressField = await driver.findElement(locateWith(By.tagName('input')).above(passwordField));</code></pre>
+let emailAddressField = await driver.findElement(locateWith(By.css('input')).above(passwordField));</code></pre>
 <pre><span>copy</span><code>let emailAddressField = driver.findElement(By.id('email'));
-let passwordField = await driver.findElement(locateWith(By.tagName('input')).below(emailAddressField));</code></pre>
+let passwordField = await driver.findElement(locateWith(By.css('input')).below(emailAddressField));</code></pre>
 <pre><span>copy</span><code>let submitButton = driver.findElement(By.id('submit'));
-let cancelButton = await driver.findElement(locateWith(By.tagName('button')).toLeftOf(submitButton));</code></pre>
+let cancelButton = await driver.findElement(locateWith(By.css('button')).toLeftOf(submitButton));</code></pre>
 <pre><span>copy</span><code>let cancelButton = driver.findElement(By.id('cancel'));
-let submitButton = await driver.findElement(locateWith(By.tagName('button')).toRightOf(cancelButton));</code></pre>
+let submitButton = await driver.findElement(locateWith(By.css('button')).toRightOf(cancelButton));</code></pre>
 <pre><span>copy</span><code>let emailAddressLabel = driver.findElement(By.id("lbl-email"));
-let emailAddressField = await driver.findElement(locateWith(By.tagName("input")).near(emailAddressLabel));</code></pre>
+let emailAddressField = await driver.findElement(locateWith(By.css("input")).near(emailAddressLabel));</code></pre>
         </div>
         <div>
             <h2 id="waits">Waits</h2>
