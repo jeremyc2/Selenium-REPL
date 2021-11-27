@@ -71,6 +71,9 @@
         a.source-link {
             float: right;
         }
+        a[href='#toc-container'] {
+            visibility: hidden;
+        }
         pre {
             position: relative;
         }
@@ -102,6 +105,9 @@
             }
             #toc-container {
                 position: unset;
+            }
+            a[href='#toc-container'] {
+                visibility: visible;
             }
         }
     </style>
