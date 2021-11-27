@@ -1,4 +1,4 @@
-# Selenium REPL
+# Getting Started
 <img src="https://jeremyc2.github.io/Selenium-REPL/REPL-Infographic.svg" width="400">
 
 *Currently only supports testing in Google Chrome*
