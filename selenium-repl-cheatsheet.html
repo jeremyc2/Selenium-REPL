@@ -71,6 +71,14 @@
         a[href='#toc-container'] {
             display: none;
         }
+        .md {
+            padding: 1em;
+            margin: 0.5em 0;
+            background: hsl(45deg 99% 73%);
+            border: 1px solid;
+            font-family: sans-serif;
+            font-size: 1.05em;
+        }
         pre {
             position: relative;
         }
@@ -244,6 +252,17 @@ await fs.writeFileSync('./test.pdf', base64, 'base64');</code></pre>
             <h2 id="locating-elements">Locating elements</h2>
             <a href="https://www.selenium.dev/documentation/webdriver/locating_elements/" class="source-link">Source</a>
             <a href="#toc-container">Table of Contents</a>
+            <div class="md">The <strong>By</strong> object has the functions: <i>className(name)</i>, 
+                <i>css(selector)</i>, <i>id(id)</i>, <i>js(script, ...var_args)</i>, 
+                <i>linkText(text)</i>, <i>name(name)</i>, <i>partialLinkText(text)</i>, 
+                <i>tagName(name)</i>, and <i>xpath(xpath)</i>. <br /><br />
+                <div>"In general, if HTML IDs are available, unique, and consistently predictable, they are the preferred method for locating an element on a page. They tend to work very quickly, and forego much processing that comes with complicated DOM traversals. <br /><br />
+                    If unique IDs are unavailable, a well-written CSS selector is the preferred method of locating an element. XPath works as well as CSS selectors, but the syntax is complicated and frequently difficult to debug. Though XPath selectors are very flexible, they are typically not performance tested by browser vendors and tend to be quite slow. <br /><br />
+                    Selection strategies based on linkText and partialLinkText have drawbacks in that they only work on link elements. Additionally, they call down to XPath selectors internally in WebDriver. <br /><br />
+                    Tag name can be a dangerous way to locate elements. There are frequently multiple elements of the same tag present on the page. This is mostly useful when calling the findElements(By) method which returns a collection of elements. <br /><br />
+                    The recommendation is to keep your locators as compact and readable as possible. Asking WebDriver to traverse the DOM structure is an expensive operation, and the more you can narrow the scope of your search, the better."
+                </div>
+            </div>
 <pre><span>copy</span><code>const cheese = driver.findElement(By.id('cheese'));</code></pre>
 <pre><span>copy</span><code>const cheddar = driver.findElement(By.css('#cheese #cheddar'));</code></pre>
 <pre><span>copy</span><code>let passwordField = driver.findElement(By.id('password'));
@@ -325,6 +344,8 @@ let driver = await new Builder().
             <h2 id="web-element">Web Element</h2>
             <a href="https://www.selenium.dev/documentation/webdriver/web_element/" class="source-link">Source</a>
             <a href="#toc-container">Table of Contents</a>
+<pre><span>copy</span><code>// Click an element
+element.click();</code></pre>
 <pre><span>copy</span><code>// Type into an element
 element.sendKeys('Input Text');</code></pre>
 <pre><span>copy</span><code>// Get all the elements available with tag 'p'
