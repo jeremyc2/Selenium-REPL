@@ -40,6 +40,7 @@
             border-bottom: 2px solid black;
         }
         #toc-container {
+            position: -webkit-sticky;
             position: sticky;
             top: 10px;
             align-self: flex-start;
@@ -90,6 +91,8 @@
             border-radius: 0 .3rem .3rem .3rem;
             border-width: 0;
             color: #fff;
+            -webkit-user-select: none;
+            -ms-user-select: none;
             user-select: none;
             cursor: pointer;
         }
