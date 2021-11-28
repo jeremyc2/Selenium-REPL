@@ -104,6 +104,16 @@
             user-select: none;
             cursor: pointer;
         }
+        h2 .octicon-link {
+            display: none;
+            width: 25px;
+            height: 25px;
+            padding: 0px !important;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' class='octicon octicon-link' viewBox='0 0 16 16' version='1.1' width='25' height='25' aria-hidden='true'%3E%3Cpath fill-rule='evenodd' d='M7.775 3.275a.75.75 0 001.06 1.06l1.25-1.25a2 2 0 112.83 2.83l-2.5 2.5a2 2 0 01-2.83 0 .75.75 0 00-1.06 1.06 3.5 3.5 0 004.95 0l2.5-2.5a3.5 3.5 0 00-4.95-4.95l-1.25 1.25zm-4.69 9.64a2 2 0 010-2.83l2.5-2.5a2 2 0 012.83 0 .75.75 0 001.06-1.06 3.5 3.5 0 00-4.95 0l-2.5 2.5a3.5 3.5 0 004.95 4.95l1.25-1.25a.75.75 0 00-1.06-1.06l-1.25 1.25a2 2 0 01-2.83 0z'%3E%3C/path%3E%3C/svg%3E");
+        }
+        h2:hover .octicon-link {
+            display: inline-block;
+        }
         @media (max-width: 750px) {
             .app {
                 flex-direction: column;
@@ -145,7 +155,10 @@
     </div>
     <div class="main">
         <div>
-            <h2 id="general-example">General example</h2>
+            <h2 id="general-example">
+                General example
+                <a class="octicon octicon-link" href="#general-example"></a>
+            </h2>
             <a href="https://www.selenium.dev/documentation/" class="source-link">Source</a>
             <a href="#toc-container">Table of Contents</a>
 <pre><span>copy</span><code>const {Builder, By, Key, until} = require('selenium-webdriver');
@@ -166,7 +179,10 @@ finally {
 }</code></pre>
         </div>
         <div>
-            <h2 id="installing-browser-drivers">Installing browser drivers</h2>
+            <h2 id="installing-browser-drivers">
+                Installing browser drivers
+                <a class="octicon octicon-link" href="#installing-browser-drivers"></a>
+            </h2>
             <a href="https://www.selenium.dev/documentation/getting_started/installing_browser_drivers/" class="source-link">Source</a>
             <a href="#toc-container">Table of Contents</a>
 <pre><span>copy</span><code>const {Builder} = require('selenium-webdriver');
@@ -184,7 +200,10 @@ let driver = await new Builder().forBrowser('opera').build();</code></pre>
 let driver = await new Builder().forBrowser('safari').build();</code></pre>
         </div>
         <div>
-            <h2 id="browser-manipulation">Browser manipulation</h2>
+            <h2 id="browser-manipulation">
+                Browser manipulation
+                <a class="octicon octicon-link" href="#browser-manipulation"></a>
+            </h2>
             <a href="https://www.selenium.dev/documentation/webdriver/browser_manipulation/" class="source-link">Source</a>
             <a href="#toc-container">Table of Contents</a>
 <pre><span>copy</span><code>await driver.get('https://selenium.dev');</code></pre>
@@ -249,7 +268,10 @@ let base64 = await driver.printPage({pageRanges:["1-2"]});
 await fs.writeFileSync('./test.pdf', base64, 'base64');</code></pre>
         </div>
         <div>
-            <h2 id="locating-elements">Locating elements</h2>
+            <h2 id="locating-elements">
+                Locating elements
+                <a class="octicon octicon-link" href="#locating-elements"></a>
+            </h2>
             <a href="https://www.selenium.dev/documentation/webdriver/locating_elements/" class="source-link">Source</a>
             <a href="#toc-container">Table of Contents</a>
             <div class="md">The <strong>By</strong> object has the functions: <i>className(name)</i>, 
@@ -277,7 +299,10 @@ let submitButton = await driver.findElement(locateWith(By.css('button')).toRight
 let emailAddressField = await driver.findElement(locateWith(By.css("input")).near(emailAddressLabel));</code></pre>
         </div>
         <div>
-            <h2 id="waits">Waits</h2>
+            <h2 id="waits">
+                Waits
+                <a class="octicon octicon-link" href="#waits"></a>
+            </h2>
             <a href="https://www.selenium.dev/documentation/webdriver/waits/" class="source-link">Source</a>
             <a href="#toc-container">Table of Contents</a>
 <pre><span>copy</span><code>const documentInitialised = () =>
@@ -295,7 +320,10 @@ await driver.manage().setTimeouts( { implicit: 10000 } );</code></pre>
 let foo = await driver.wait(until.elementLocated(By.id('foo')), 30000, 'Timed out after 30 seconds', 5000);</code></pre>
         </div>
         <div>
-            <h2 id="js-alerts-prompts-and-confirmations">JS alerts, prompts, and confirmations</h2>
+            <h2 id="js-alerts-prompts-and-confirmations">
+                JS alerts, prompts, and confirmations
+                <a class="octicon octicon-link" href="#js-alerts-prompts-and-confirmations"></a>
+            </h2>
             <a href="https://www.selenium.dev/documentation/webdriver/js_alerts_prompts_and_confirmations/" class="source-link">Source</a>
             <a href="#toc-container">Table of Contents</a>
 <pre><span>copy</span><code>// Wait for the alert to be displayed
@@ -312,7 +340,10 @@ await alert.accept();</code></pre>
 <pre><span>copy</span><code>await alert.dismiss();</code></pre>
         </div>
         <div>
-            <h2 id="http-proxies">HTTP proxies</h2>
+            <h2 id="http-proxies">
+                HTTP proxies
+                <a class="octicon octicon-link" href="#http-proxies"></a>
+            </h2>
             <a href="https://www.selenium.dev/documentation/webdriver/http_proxies/" class="source-link">Source</a>
             <a href="#toc-container">Table of Contents</a>
 <pre><span>copy</span><code>let webdriver = require('selenium-webdriver');
@@ -327,7 +358,10 @@ let driver = new webdriver.Builder()
     .build();</code></pre>
         </div>
         <div>
-            <h2 id="page-loading-strategy">Page loading strategy</h2>
+            <h2 id="page-loading-strategy">
+                Page loading strategy
+                <a class="octicon octicon-link" href="#page-loading-strategy"></a>
+            </h2>
             <a href="https://www.selenium.dev/documentation/webdriver/page_loading_strategy/" class="source-link">Source</a>
             <a href="#toc-container">Table of Contents</a>
 <pre><span>copy</span><code>const {Builder, Capabilities} = require('selenium-webdriver');
@@ -341,7 +375,10 @@ let driver = await new Builder().
 <pre><span>copy</span><code>caps.setPageLoadStrategy("none");</code></pre>
         </div>
         <div>
-            <h2 id="web-element">Web Element</h2>
+            <h2 id="web-element">
+                Web Element
+                <a class="octicon octicon-link" href="#web-element"></a>
+            </h2>
             <a href="https://www.selenium.dev/documentation/webdriver/web_element/" class="source-link">Source</a>
             <a href="#toc-container">Table of Contents</a>
 <pre><span>copy</span><code>// Click an element
@@ -366,7 +403,10 @@ let cssValue = await driver.findElement(By.linkText("More information...")).getC
 let text = await driver.findElement(By.css('h1')).getText();</code></pre>
         </div>
         <div>
-            <h2 id="keyboard">Keyboard</h2>
+            <h2 id="keyboard">
+                Keyboard
+                <a class="octicon octicon-link" href="#keyboard"></a>
+            </h2>
             <a href="https://www.selenium.dev/documentation/webdriver/keyboard/" class="source-link">Source</a>
             <a href="#toc-container">Table of Contents</a>
 <pre><span>copy</span><code>// Enter text "webdriver" and perform keyboard action "Enter"
@@ -379,7 +419,10 @@ await driver.actions().click(search).keyDown(Key.SHIFT).sendKeys("qwerty").keyUp
 await searchInput.clear();</code></pre>
         </div>
         <div>
-            <h2 id="remote-webdriver">Remote Webdriver</h2>
+            <h2 id="remote-webdriver">
+                Remote Webdriver
+                <a class="octicon octicon-link" href="#remote-webdriver"></a>
+            </h2>
             <a href="https://www.selenium.dev/documentation/webdriver/remote_webdriver/" class="source-link">Source</a>
             <a href="#toc-container">Table of Contents</a>
 <pre><span>copy</span><code>const { Builder, Capabilities } = require("selenium-webdriver");
@@ -404,7 +447,10 @@ let driver = new Builder()
 driver.setFileDetector(new remote.FileDetector);</code></pre>
         </div>
         <div>
-            <h2 id="bidi-apis">BiDi APIs</h2>
+            <h2 id="bidi-apis">
+                BiDi APIs
+                <a class="octicon octicon-link" href="#bidi-apis"></a>
+            </h2>
             <a href="https://www.selenium.dev/documentation/webdriver/bidi_apis/" class="source-link">Source</a>
             <a href="#toc-container">Table of Contents</a>
 <pre><span>copy</span><code>const pageCdpConnection = await driver.createCDPConnection('page');
@@ -440,7 +486,10 @@ await driver.onIntercept(connection, httpResponse, async function () {
 driver.get(url)</code></pre>
         </div>
         <div>
-            <h2 id="driver-specific-capabilities">Driver specific capabilities</h2>
+            <h2 id="driver-specific-capabilities">
+                Driver specific capabilities
+                <a class="octicon octicon-link" href="#driver-specific-capabilities"></a>
+            </h2>
             <a href="https://www.selenium.dev/documentation/webdriver/capabilities/driver_specific_capabilities/" class="source-link">Source</a>
             <a href="#toc-container">Table of Contents</a>
 <pre><span>copy</span><code>const { Builder } = require("selenium-webdriver");
@@ -464,7 +513,10 @@ const driver = new Builder()
     .build();</code></pre>
         </div>
         <div>
-            <h2 id="on-test-automation">On test automation</h2>
+            <h2 id="on-test-automation">
+                On test automation
+                <a class="octicon octicon-link" href="#on-test-automation"></a>
+            </h2>
             <a href="https://www.selenium.dev/documentation/guidelines/on_test_automation/" class="source-link">Source</a>
             <a href="#toc-container">Table of Contents</a>
 <pre><span>copy</span><code>// Create a user who has read-only permissions--they can configure a unicorn,
@@ -500,7 +552,10 @@ var unicornConfirmationPage = addUnicornPage.createUnicorn(sparkles);</code></pr
 assert(unicornConfirmationPage.exists(sparkles), "Sparkles should have been created, with all attributes intact");</code></pre>
         </div>
         <div>
-            <h2 id="mouse-and-keyboard-actions-in-detail">Mouse and keyboard actions in detail</h2>
+            <h2 id="mouse-and-keyboard-actions-in-detail">
+                Mouse and keyboard actions in detail
+                <a class="octicon octicon-link" href="#mouse-and-keyboard-actions-in-detail"></a>
+            </h2>
             <a href="https://www.selenium.dev/documentation/support_packages/mouse_and_keyboard_actions_in_detail/" class="source-link">Source</a>            
             <a href="#toc-container">Table of Contents</a>
 <pre><span>copy</span><code>// Press and hold
@@ -554,7 +609,10 @@ await actions.move({origin:sourceEle}).press().perform();
 await actions.move({origin:targetEle}).release().perform();</code></pre>
         </div>
         <div>
-            <h2 id="working-with-cookies">Working with cookies</h2>
+            <h2 id="working-with-cookies">
+                Working with cookies
+                <a class="octicon octicon-link" href="#working-with-cookies"></a>
+            </h2>
             <a href="https://www.selenium.dev/documentation/support_packages/working_with_cookies/" class="source-link">Source</a>            
             <a href="#toc-container">Table of Contents</a>
 <pre><span>copy</span><code>// set a cookie on the current domain
@@ -577,7 +635,10 @@ await driver.manage().addCookie({name:'key', value: 'value', sameSite:'Lax'});
 console.log(await driver.manage().getCookie('key'));</code></pre>
         </div>
         <div>
-            <h2 id="chrome-devtools">Chrome devtools</h2>
+            <h2 id="chrome-devtools">
+                Chrome devtools
+                <a class="octicon octicon-link" href="#chrome-devtools"></a>
+            </h2>
             <a href="https://www.selenium.dev/documentation/support_packages/chrome_devtools/" class="source-link">Source</a>            
             <a href="#toc-container">Table of Contents</a>
 <pre><span>copy</span><code>const pageCdpConnection = await driver.createCDPConnection('page');
