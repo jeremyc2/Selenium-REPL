@@ -83,7 +83,7 @@ class LoginPage {
 
 module.exports = LoginPage;
 ```
-[Selenium JavaScript Cheatsheet](https://jeremyc2.github.io/Selenium-REPL/selenium-repl-cheatsheet.html)
+[Selenium REPL Cheatsheet](https://jeremyc2.github.io/Selenium-REPL/selenium-repl-cheatsheet.html)
 
 [JavaScript API Documentation](https://www.selenium.dev/selenium/docs/api/javascript/)
 
