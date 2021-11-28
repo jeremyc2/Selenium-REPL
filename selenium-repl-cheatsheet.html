@@ -88,9 +88,6 @@
         }
         pre > span {
             display: none;
-        }
-        pre:hover > span {
-            display: inline;
             position: absolute;
             top: 0;
             right: 0;
@@ -103,6 +100,11 @@
             -ms-user-select: none;
             user-select: none;
             cursor: pointer;
+        }
+        @media(hover: hover) and (pointer: fine) {
+            pre:hover > span {
+                display: inline;
+            }
         }
         h2 .octicon-link {
             display: none;
