@@ -118,6 +118,16 @@
                 display: inline-block;
             }
         }
+        body.fullscreen .app {
+            flex-direction: column;
+        }
+        body.fullscreen #toc-container {
+            position: unset;
+        }
+        body.fullscreen a[href='#toc-container'] {
+            display: inline;
+            float: right;
+        }
         @media (max-width: 750px) {
             .app {
                 flex-direction: column;
@@ -687,6 +697,11 @@ await pageCdpConnection.execute(
                     setTimeout(() => this.innerHTML = 'copy', 5000);
                 });
             })
+        });
+        document.body.addEventListener("keypress", e => {
+            if(e.code === 'Backslash' && e.ctrlKey) {
+                document.querySelector('body').classList.toggle('fullscreen');
+            }
         });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.25.0/components/prism-core.min.js"></script>
