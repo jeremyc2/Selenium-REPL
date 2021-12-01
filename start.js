@@ -8,6 +8,8 @@ program
     .option('-c, --chromedriverPath <path>', 'folder location of Chromedriver')
     .option('-s --importSelectors', 'add additional selector functions to the REPL');
 
+program.parse(process.argv);
+
 const { chromedriverPath, importSelectors } = program.opts();
 
 function compareNodeVersion(version) {
