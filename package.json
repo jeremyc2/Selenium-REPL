@@ -4,10 +4,10 @@
   "description": "Selenium Webdriver REPL and test suite scaffolding in JavaScript",
   "main": "main/repl/selenium-repl.js",
   "dependencies": {
+    "commander": "^8.3.0",
     "dotenv": "^8.2.0",
     "selenium-webdriver": "^4.0.0"
   },
-  "devDependencies": {},
   "scripts": {
     "setup": "node setup.js",
     "start": "node start.js"

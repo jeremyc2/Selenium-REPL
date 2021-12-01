@@ -1,9 +1,14 @@
 #!/usr/bin/env node
-const { spawn } = require('child_process'),
+const { program } = require('commander'),
+    { spawn } = require('child_process'),
     fs = require('fs'),
     path = require('path');
 
-const chromedriverPath = process.argv[2];
+program
+    .option('-c, --chromedriverPath <path>', 'folder location of Chromedriver')
+    .option('-s --importSelectors', 'add additional selector functions to the REPL');
+
+const { chromedriverPath, importSelectors } = program.opts();
 
 function compareNodeVersion(version) {
   const oldParts = process.version.substring(1).split('.');
@@ -69,13 +74,13 @@ async function startREPL() {
         "try { \
             require('./main/repl/selenium-repl')(${
                 chromedriverPath? `'${chromedriverPath}'`: ''
-            }) \
+            }, ${importSelectors}) \
          } catch { \
             process.exit(1) \
          }"`;
   
     if(compareNodeVersion('16.6.0')) {
-        require('./main/repl/selenium-repl')(chromedriverPath);
+        require('./main/repl/selenium-repl')(chromedriverPath, importSelectors);
     } else {
         await spawnShell(altScript);
     }

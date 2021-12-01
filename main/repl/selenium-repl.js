@@ -42,7 +42,7 @@ var chromeOptions = new chrome.Options()
 
 var myrepl;
 
-module.exports = (chromedriverPath) => {
+module.exports = (chromedriverPath, autoImportSelectors) => {
 
     if(chromedriverPath) {
         process.env.CHROMEDRIVER_PATH = chromedriverPath;
@@ -55,6 +55,10 @@ module.exports = (chromedriverPath) => {
     }
 
     myrepl = require('repl').start();
+
+    if(autoImportSelectors) {
+        importSelectors();
+    }
 
     Object.assign(myrepl.context, {
         ...selenium,
