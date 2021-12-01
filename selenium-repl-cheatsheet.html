@@ -41,7 +41,7 @@
         }
         .table {
             display: grid;
-            grid-template-columns: min-content min-content min-content;
+            grid-template-columns: repeat(auto-fill, minmax(12em, 1fr));
         }
         .table div {
             padding: 4px;
@@ -148,14 +148,6 @@
             a[href='#toc-container'] {
                 display: inline;
                 float: right;
-            }
-            .table {
-                grid-template-columns: min-content min-content;
-            }
-        }
-        @media (max-width: 400px) {
-            .table {
-                grid-template-columns: min-content;
             }
         }
     </style>
