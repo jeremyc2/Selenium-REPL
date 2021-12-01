@@ -1,18 +1,44 @@
 const ChromedriverFactory = require('../ChromedriverFactory'),
     selenium = require('selenium-webdriver'),
     chrome = require('selenium-webdriver/chrome'),
-    path = require('path'),
-    EventEmitter = require('events');
+    path = require('path');
 
-class MyEmitter extends EventEmitter {}
+class EventPromise {
+    listeners;
+    constructor() {
+        this.listeners = [];
+        this.promise = new Promise(resolve => {
+            this.resolve = resolve;
+        });
+    }
+    on(cb) {
+        this.listeners.push(cb);
+    }
+    emit() {
+        this.resolve();
+        this.listeners.forEach(cb => this.once(cb));
+    }
+    once(executor) {
+        this.promise = this.promise.then(executor);
+    }
+    catch(executor) {
+        this.promise = this.promise.catch(executor);
+    }
+    finally(executor) {
+        this.promise = this.promise.finally(executor);
+    }
+}
 
-const myEmitter = new MyEmitter();
+const events = {
+    startRepl: new EventPromise(),
+    driverBuilt: new EventPromise()
+}
 
 function buildDriver() {
     var driver = new ChromedriverFactory(chromeOptions).driver;
-    myEmitter.once('replStart', () => {
+    events.startRepl.once(() => {
         myrepl.context.driver = driver;
-        myEmitter.emit('driverBuilt');
+        events.driverBuilt.emit();
     });
     return driver;
 }
@@ -31,7 +57,7 @@ function get(url) {
 }
 
 function importSelectors() {
-    myEmitter.on('driverBuilt', () => {
+    events.driverBuilt.once(() => {
         const { $, $$, $x, $$x } = require('../utils/selector')(myrepl.context.driver);
         Object.assign(myrepl.context, {
             $,
@@ -59,19 +85,18 @@ module.exports = (chromedriverPath, autoImportSelectors) => {
         throw "Error building chromedriver";
     }
 
+    if(autoImportSelectors) {
+        events.driverBuilt.on(importSelectors);
+    }
+
     myrepl = require('repl').start();
-    myEmitter.emit('replStart');
+    events.startRepl.emit();
 
     Object.assign(myrepl.context, {
         ...selenium,
         chrome,
         buildDriver,
-        get,
-        importSelectors
+        get
     });
-    
-    if(autoImportSelectors) {
-        importSelectors();
-    }
 
 }
