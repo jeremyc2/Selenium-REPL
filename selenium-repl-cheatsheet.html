@@ -40,14 +40,14 @@
             border-bottom: 2px solid black;
         }
         .table {
-            overflow-x: auto;
+            display: grid;
+            grid-template-columns: min-content min-content min-content;
         }
-        table, th, td {
-            border: 1px solid black;
+        .table div {
             padding: 4px;
         }
-        table {
-            border-collapse: collapse;
+        .table div::before {
+            content: '\2022\00a0';
         }
         #toc-container {
             position: -webkit-sticky;
@@ -148,6 +148,14 @@
             a[href='#toc-container'] {
                 display: inline;
                 float: right;
+            }
+            .table {
+                grid-template-columns: min-content min-content;
+            }
+        }
+        @media (max-width: 400px) {
+            .table {
+                grid-template-columns: min-content;
             }
         }
     </style>
@@ -299,31 +307,17 @@ await fs.writeFileSync('./test.pdf', base64, 'base64');</code></pre>
             <a href="https://www.selenium.dev/documentation/webdriver/locating_elements/" class="source-link">Source</a>
             <a href="#toc-container">Table of Contents</a>
             <div class="md">
+                <strong>Find Element:</strong>
                 <div class="table">
-                    <table>
-                        <thead>
-                            <tr>
-                                <td style="text-align: center;" colspan="3">Locating Elements</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>By.className(name)</td>
-                            <td>By.css(selector)</td>
-                            <td>By.id(id)</td>
-                        </tr>
-                        <tr>
-                            <td>By.js(script, ...var_args)</td>
-                            <td>By.linkText(text)</td>
-                            <td>By.name(name)</td>
-                        </tr>
-                        <tr>
-                            <td>By.partialLinkText(text)</td>
-                            <td>By.tagName(name)</td>
-                            <td>By.xpath(xpath)</td>
-                        </tr>
-                        </tbody>
-                    </table>
+                    <div>By.className(name)</div>
+                    <div>By.css(selector)</div>
+                    <div>By.id(id)</div>
+                    <div>By.js(script, ...var_args)</div>
+                    <div>By.linkText(text)</div>
+                    <div>By.name(name)</div>
+                    <div>By.partialLinkText(text)</div>
+                    <div>By.tagName(name)</div>
+                    <div>By.xpath(xpath)</div>
                 </div><br />
                 <div>"In general, if HTML IDs are available, unique, and consistently predictable, they are the preferred method for locating an element on a page. They tend to work very quickly, and forego much processing that comes with complicated DOM traversals. <br /><br />
                     If unique IDs are unavailable, a well-written CSS selector is the preferred method of locating an element. XPath works as well as CSS selectors, but the syntax is complicated and frequently difficult to debug. Though XPath selectors are very flexible, they are typically not performance tested by browser vendors and tend to be quite slow. <br /><br />
