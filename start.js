@@ -75,7 +75,7 @@ async function startREPL() {
     const altScript = `node --experimental-repl-await -e \
         "try { \
             require('./main/repl/selenium-repl')(${
-                chromedriverPath? `'${chromedriverPath}'`: ''
+                chromedriverPath? `'${chromedriverPath}'`: null
             }, ${importSelectors}) \
          } catch { \
             process.exit(1) \
