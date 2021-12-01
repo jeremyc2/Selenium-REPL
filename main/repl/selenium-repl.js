@@ -1,16 +1,19 @@
 const ChromedriverFactory = require('../ChromedriverFactory'),
     selenium = require('selenium-webdriver'),
     chrome = require('selenium-webdriver/chrome'),
-    path = require('path');
+    path = require('path'),
+    EventEmitter = require('events');
+
+class MyEmitter extends EventEmitter {}
+
+const myEmitter = new MyEmitter();
 
 function buildDriver() {
     var driver = new ChromedriverFactory(chromeOptions).driver;
-    var interval = setInterval(() => {
-        if(myrepl.context) {
-            clearInterval(interval);
-            myrepl.context.driver = driver;
-        }
-    }, 300);
+    myEmitter.once('replStart', () => {
+        myrepl.context.driver = driver;
+        myEmitter.emit('driverBuilt');
+    });
     return driver;
 }
 
@@ -28,12 +31,14 @@ function get(url) {
 }
 
 function importSelectors() {
-    const { $, $$, $x, $$x } = require('../utils/selector')(myrepl.context.driver);
-    Object.assign(myrepl.context, {
-        $,
-        $$,
-        $x,
-        $$x
+    myEmitter.on('driverBuilt', () => {
+        const { $, $$, $x, $$x } = require('../utils/selector')(myrepl.context.driver);
+        Object.assign(myrepl.context, {
+            $,
+            $$,
+            $x,
+            $$x
+        });
     });
 }
 
@@ -55,6 +60,7 @@ module.exports = (chromedriverPath, autoImportSelectors) => {
     }
 
     myrepl = require('repl').start();
+    myEmitter.emit('replStart');
 
     Object.assign(myrepl.context, {
         ...selenium,
