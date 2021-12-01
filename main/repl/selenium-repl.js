@@ -56,10 +56,6 @@ module.exports = (chromedriverPath, autoImportSelectors) => {
 
     myrepl = require('repl').start();
 
-    if(autoImportSelectors) {
-        importSelectors();
-    }
-
     Object.assign(myrepl.context, {
         ...selenium,
         chrome,
@@ -67,5 +63,9 @@ module.exports = (chromedriverPath, autoImportSelectors) => {
         get,
         importSelectors
     });
+    
+    if(autoImportSelectors) {
+        importSelectors();
+    }
 
 }
