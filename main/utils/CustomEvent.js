@@ -21,8 +21,8 @@ module.exports = class CustomEvent {
     }
     emit() {
         this.hasBeenFired = true;
-        this.executors.forEach(({exec, type}, index) => {
-            exec();
+        this.executors.forEach(({executor, type}, index) => {
+            executor();
             if(type == 'once') {
                 this.executors.splice(index, 1);
             }
