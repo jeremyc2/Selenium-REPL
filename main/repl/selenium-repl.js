@@ -5,13 +5,13 @@ const ChromedriverFactory = require('../ChromedriverFactory'),
     path = require('path');
 
 const events = {
-    startRepl: new CustomEvent(),
+    replStarted: new CustomEvent(),
     driverBuilt: new CustomEvent()
 }
 
 function buildDriver() {
     var driver = new ChromedriverFactory(chromeOptions).driver;
-    events.startRepl.once(() => {
+    events.replStarted.once(() => {
         myrepl.context.driver = driver;
         events.driverBuilt.emit();
     });
@@ -65,13 +65,14 @@ module.exports = (chromedriverPath, autoImportSelectors) => {
     }
 
     myrepl = require('repl').start();
-    events.startRepl.emit();
+    events.replStarted.emit();
 
     Object.assign(myrepl.context, {
         ...selenium,
         chrome,
         buildDriver,
-        get
+        get,
+        importSelectors
     });
 
 }
