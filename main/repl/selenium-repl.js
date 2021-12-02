@@ -64,7 +64,7 @@ module.exports = (chromedriverPath, autoImportSelectors) => {
         importSelectors();
     }
 
-    myrepl = require('repl').start();
+    myrepl = require('repl').start({ignoreUndefined: true});
     events.replStarted.emit();
 
     Object.assign(myrepl.context, {
