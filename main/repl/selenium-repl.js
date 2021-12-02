@@ -1,37 +1,12 @@
 const ChromedriverFactory = require('../ChromedriverFactory'),
+    CustomEvent = require('../utils/CustomEvent'),
     selenium = require('selenium-webdriver'),
     chrome = require('selenium-webdriver/chrome'),
     path = require('path');
 
-class EventPromise {
-    listeners;
-    constructor() {
-        this.listeners = [];
-        this.promise = new Promise(resolve => {
-            this.resolve = resolve;
-        });
-    }
-    on(cb) {
-        this.listeners.push(cb);
-    }
-    emit() {
-        this.resolve();
-        this.listeners.forEach(cb => this.once(cb));
-    }
-    once(executor) {
-        this.promise = this.promise.then(executor);
-    }
-    catch(executor) {
-        this.promise = this.promise.catch(executor);
-    }
-    finally(executor) {
-        this.promise = this.promise.finally(executor);
-    }
-}
-
 const events = {
-    startRepl: new EventPromise(),
-    driverBuilt: new EventPromise()
+    startRepl: new CustomEvent(),
+    driverBuilt: new CustomEvent()
 }
 
 function buildDriver() {
