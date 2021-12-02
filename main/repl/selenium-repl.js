@@ -32,7 +32,7 @@ function get(url) {
 }
 
 function importSelectors() {
-    events.driverBuilt.once(() => {
+    events.driverBuilt.on(() => {
         const { $, $$, $x, $$x } = require('../utils/selector')(myrepl.context.driver);
         Object.assign(myrepl.context, {
             $,
@@ -61,7 +61,7 @@ module.exports = (chromedriverPath, autoImportSelectors) => {
     }
 
     if(autoImportSelectors) {
-        events.driverBuilt.on(importSelectors);
+        importSelectors;
     }
 
     myrepl = require('repl').start();
