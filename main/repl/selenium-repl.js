@@ -61,7 +61,7 @@ module.exports = (chromedriverPath, autoImportSelectors) => {
     }
 
     if(autoImportSelectors) {
-        importSelectors;
+        importSelectors();
     }
 
     myrepl = require('repl').start();
