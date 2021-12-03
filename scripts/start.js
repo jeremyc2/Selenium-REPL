@@ -37,7 +37,7 @@ async function spawnShell(script, isPowershell, setWorkingDirectory) {
         }
 
         if(setWorkingDirectory) {
-            opts.cwd = path.resolve(__dirname);
+            opts.cwd = path.resolve(__dirname, '../');
         }
 
         const powershell = spawn(script, opts);
@@ -57,14 +57,14 @@ async function spawnShell(script, isPowershell, setWorkingDirectory) {
 async function installChromedriver() {
 
     var script = `Function Install-Chromedriver {
-    ${fs.readFileSync(path.resolve(__dirname, 'Install-Chromedriver.ps1'))}
+    ${fs.readFileSync(path.resolve(__dirname, '../Install-Chromedriver.ps1'))}
     }
     Install-Chromedriver `;
     
     if(chromedriverPath) {
         script += chromedriverPath;
     } else {
-        script += path.resolve(__dirname, 'chromedriver');
+        script += path.resolve(__dirname, '../chromedriver');
 
         if(process.platform === 'win32') {
             script += '.exe';

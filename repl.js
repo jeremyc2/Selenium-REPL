@@ -44,7 +44,7 @@ function importSelectors() {
 }
 
 var chromeOptions = new chrome.Options()
-    .addArguments(`load-extension=${path.resolve(__dirname, './extension')}`);
+    .addArguments(`load-extension=${path.resolve(__dirname, 'extension')}`);
 
 var myrepl;
 
