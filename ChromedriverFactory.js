@@ -4,7 +4,7 @@ const { Builder } = require('selenium-webdriver'),
 
 class ChromedriverFactory {
     constructor(chromeOptions) {
-        require('dotenv').config({ path: path.resolve(__dirname, '../.env') });
+        require('dotenv').config({ path: path.resolve(__dirname, '.env') });
 
         this.chromeOptions = chromeOptions;
         this.addDriverPath();

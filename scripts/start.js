@@ -79,7 +79,7 @@ async function startREPL() {
     const altScript = `node --experimental-repl-await -e \
         "try { \
             require('${
-                JSON.stringify(path.resolve(__dirname, 'main/repl/selenium-repl'))
+                JSON.stringify(path.resolve(__dirname, '../repl'))
             }')(${
                 chromedriverPath? `'${chromedriverPath}'`: null
             }, ${importSelectors}) \
@@ -88,7 +88,7 @@ async function startREPL() {
          }"`;
 
     if(compareNodeVersion('16.6.0')) {
-        require('./main/repl/selenium-repl')(chromedriverPath, importSelectors);
+        require('../repl')(chromedriverPath, importSelectors);
     } else {
         await spawnShell(altScript);
     }

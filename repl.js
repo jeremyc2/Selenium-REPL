@@ -1,5 +1,5 @@
-const ChromedriverFactory = require('../ChromedriverFactory'),
-    CustomEvent = require('../utils/CustomEvent'),
+const ChromedriverFactory = require('./ChromedriverFactory'),
+    CustomEvent = require('./utils/CustomEvent'),
     selenium = require('selenium-webdriver'),
     chrome = require('selenium-webdriver/chrome'),
     path = require('path');
@@ -19,7 +19,7 @@ function buildDriver() {
 }
 
 function get(url) {
-    url = require('../utils/misc').getFullURL(url);
+    url = require('./utils/misc').getFullURL(url);
 
     if(myrepl.context.driver) {
         return myrepl.context.driver.get(url)
@@ -33,7 +33,7 @@ function get(url) {
 
 function importSelectors() {
     events.driverBuilt.on(() => {
-        const { $, $$, $x, $$x } = require('../utils/selector')(myrepl.context.driver);
+        const { $, $$, $x, $$x } = require('./utils/selector')(myrepl.context.driver);
         Object.assign(myrepl.context, {
             $,
             $$,
@@ -44,7 +44,7 @@ function importSelectors() {
 }
 
 var chromeOptions = new chrome.Options()
-    .addArguments(`load-extension=${path.resolve(__dirname, '../../extension')}`);
+    .addArguments(`load-extension=${path.resolve(__dirname, './extension')}`);
 
 var myrepl;
 

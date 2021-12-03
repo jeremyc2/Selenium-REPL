@@ -30,8 +30,8 @@ Store Pages in ***main/pages*** and Tests in ***main/tests***.
 ### Example Test
 #### test1.js
 ```javascript
-const ChromedriverFactory = require('../ChromedriverFactory'),
-    LoginPage = require('../pages/LoginPage');
+const ChromedriverFactory = require('selenium-repl/ChromedriverFactory'),
+    LoginPage = require('./LoginPage');
 
 function test1() {
     var driver = new ChromedriverFactory().driver;
