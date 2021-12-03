@@ -25,13 +25,11 @@ Right-click an element to copy its CSS Selector.
 Refer to the [Official Selenium Documentation](https://www.selenium.dev/documentation/). It is recommended you follow the [Page Object Model
 ](https://www.selenium.dev/documentation/guidelines/page_object_models/). 
 
-Store Pages in ***main/pages*** and Tests in ***main/tests***.
-
 ### Example Test
 #### test1.js
 ```javascript
 const ChromedriverFactory = require('selenium-repl/ChromedriverFactory'),
-    LoginPage = require('./LoginPage');
+    LoginPage = require('./pages/LoginPage');
 
 function test1() {
     var driver = new ChromedriverFactory().driver;
@@ -49,7 +47,7 @@ module.exports = test1;
 #### LoginPage.js
 ```javascript
 const { By } = require('selenium-webdriver'),
-    HomePage = require('./HomePage');
+    HomePage = require('./pages/HomePage');
 
 class LoginPage {
 
