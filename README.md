@@ -26,12 +26,12 @@ Refer to the [Official Selenium Documentation](https://www.selenium.dev/document
 ](https://www.selenium.dev/documentation/guidelines/page_object_models/). 
 
 ### Example Test
-#### test1.js
+#### test.js
 ```javascript
 const ChromedriverFactory = require('selenium-repl/ChromedriverFactory'),
     LoginPage = require('./pages/LoginPage');
 
-function test1() {
+function test() {
     var driver = new ChromedriverFactory().driver;
 
     driver.get('https://www.google.com');
@@ -42,7 +42,7 @@ function test1() {
     // ...
 }
 
-module.exports = test1;
+module.exports = test;
 ```
 #### LoginPage.js
 ```javascript
