@@ -24,16 +24,20 @@ function compareNodeVersion(version) {
   return true;
 }
 
-async function spawnShell(script, isPowershell) {
+async function spawnShell(script, isPowershell, setWorkingDirectory) {
     return new Promise((resolve, reject) => {
 
-        var opts = {stdio: 'inherit', cwd: path.resolve(__dirname)};
+        var opts = {stdio: 'inherit'};
 
         if(isPowershell) {
              opts.shell = process.platform === 'win32'? 
                   'powershell.exe': 'pwsh'
         } else {
             opts.shell = true;
+        }
+
+        if(setWorkingDirectory) {
+            opts.cwd = path.resolve(__dirname);
         }
 
         const powershell = spawn(script, opts);
@@ -67,20 +71,22 @@ async function installChromedriver() {
         }
     }
 
-    return spawnShell(script, true);
+    return spawnShell(script, true, true);
 
 }
 
 async function startREPL() {
     const altScript = `node --experimental-repl-await -e \
         "try { \
-            require('./main/repl/selenium-repl')(${
+            require('${
+                JSON.stringify(path.resolve(__dirname, 'main/repl/selenium-repl'))
+            }')(${
                 chromedriverPath? `'${chromedriverPath}'`: null
             }, ${importSelectors}) \
          } catch { \
             process.exit(1) \
          }"`;
-  
+
     if(compareNodeVersion('16.6.0')) {
         require('./main/repl/selenium-repl')(chromedriverPath, importSelectors);
     } else {
