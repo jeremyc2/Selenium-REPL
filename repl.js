@@ -48,10 +48,14 @@ var chromeOptions = new chrome.Options()
 
 var myrepl;
 
-module.exports = (chromedriverPath, autoImportSelectors) => {
+module.exports = (chromedriverPath, {headless, autoImportSelectors}) => {
 
     if(chromedriverPath) {
         process.env.CHROMEDRIVER_PATH = chromedriverPath;
+    }
+    
+    if(headless) {
+        chromeOptions.headless();
     }
 
     try {
