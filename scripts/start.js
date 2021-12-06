@@ -11,7 +11,7 @@ program
 
 program.parse(process.argv);
 
-const { chromedriverPath, headless, importSelectors } = program.opts();
+const { chromedriverPath, headless, importSelectors: autoImportSelectors } = program.opts();
 
 function quote(text) {
     return text? `'${text}'`: null;
@@ -88,14 +88,14 @@ async function startREPL() {
             }')(${
                 quote(chromedriverPath)
             }, ${
-                JSON.stringify({headless, importSelectors})
+                JSON.stringify({headless, autoImportSelectors})
             }) \
          } catch { \
             process.exit(1) \
          }"`;
 
     if(compareNodeVersion('16.6.0')) {
-        require('../repl')(chromedriverPath, {headless, importSelectors});
+        require('../repl')(chromedriverPath, {headless, autoImportSelectors});
     } else {
         await spawnShell(altScript);
     }
