@@ -40,7 +40,7 @@ Function Set-Geckodriver-Location {
     }
 }
 
-function Get-SystemString {
+Function Get-SystemString {
 
     # $IsWindows will PowerShell Core but not on PowerShell 5 and below, but $Env:OS does
     # this way you can safely check whether the current machine is running Windows pre and post PowerShell Core
