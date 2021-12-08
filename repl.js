@@ -1,4 +1,4 @@
-const ChromedriverFactory = require('./ChromedriverFactory'),
+const DriverFactory = require('./DriverFactory'),
     CustomEvent = require('./utils/CustomEvent'),
     selenium = require('selenium-webdriver'),
     chrome = require('selenium-webdriver/chrome'),
@@ -10,7 +10,7 @@ const events = {
 }
 
 function buildDriver() {
-    var driver = new ChromedriverFactory(chromeOptions).driver;
+    var driver = new DriverFactory('chrome', chromeOptions).driver;
     events.replStarted.once(() => {
         myrepl.context.driver = driver;
         events.driverBuilt.emit();
