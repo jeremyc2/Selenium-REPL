@@ -12,11 +12,11 @@ param (
 )
 
 # Install in $PSScriptRoot by default
-if([string]::IsNullOrEmpty($EdgeDriverOutputPath) -and $PSScriptRoot) {
-    if($IsWindows -or $Env:OS) {
-        $EdgeDriverOutputPath = "$PSScriptRoot/edgedriver.exe";
+If([string]::IsNullOrEmpty($EdgeDriverOutputPath) -and $PSScriptRoot) {
+    If($IsWindows -or $Env:OS) {
+        $EdgeDriverOutputPath = "$PSScriptRoot/msedgedriver.exe";
     } else {
-        $EdgeDriverOutputPath = "$PSScriptRoot/edgedriver";
+        $EdgeDriverOutputPath = "$PSScriptRoot/msedgedriver";
     }
     Write-Output "Edgedriver Path: $EdgeDriverOutputPath";
 }
@@ -90,7 +90,7 @@ function Get-EdgedriverUrl {
     [CmdletBinding()]
     param(
         [ValidateNotNullOrEmpty()]
-        [string]$EdgeVersion = (Get-EdgeVersion),
+        [string]$EdgeVersion,
         [ValidateSet("win32", "win64", "mac64", "linux64", "arm64")]
         [string]$System = (Get-SystemString)
     )
@@ -99,18 +99,21 @@ function Get-EdgedriverUrl {
 
 }
 
+If([string]::IsNullOrEmpty($EdgeVersion)) {
+    $EdgeVersion = (Get-EdgeVersion);
+}
+$EdgedriverUrl = Get-EdgedriverUrl -EdgeVersion $EdgeVersion;
+
 If (($ForceDownload -eq $False) -and (Test-path $EdgeDriverOutputPath)) {
     $ExistingEdgeDriverVersion = & $EdgeDriverOutputPath --version;
     $ExistingEdgeDriverVersion = $ExistingEdgeDriverVersion.Split(" ")[1];
-    If ($EdgeDriverVersion -eq $ExistingEdgeDriverVersion) {
+    If ($EdgeVersion -eq $ExistingEdgeDriverVersion) {
         Write-Output "Edgedriver on machine is already latest version. Skipping.";
         Write-Output "Use -ForceDownload to reinstall regardless";
         Set-Edgedriver-Location;
         Exit;
     }
 }
-
-$EdgedriverUrl = Get-EdgedriverUrl -EdgeVersion $EdgeVersion;
 
 $TempFilePath = [System.IO.Path]::GetTempFileName();
 $TempZipFilePath = $TempFilePath.Replace(".tmp", ".zip");
@@ -119,17 +122,17 @@ $TempFileUnzipPath = $TempFilePath.Replace(".tmp", "");
 If ($IsWindows -or $Env:OS) {
     Invoke-WebRequest $EdgedriverUrl -OutFile $TempZipFilePath;
     Expand-Archive $TempZipFilePath -DestinationPath $TempFileUnzipPath;
-    Move-Item "$TempFileUnzipPath/edgedriver.exe" -Destination $EdgeDriverOutputPath -Force;
+    Move-Item "$TempFileUnzipPath/msedgedriver.exe" -Destination $EdgeDriverOutputPath -Force;
 }
 ElseIf ($IsLinux) {
     Invoke-WebRequest $EdgedriverUrl -OutFile $TempZipFilePath;
     Expand-Archive $TempZipFilePath -DestinationPath $TempFileUnzipPath;
-    Move-Item "$TempFileUnzipPath/edgedriver" -Destination $EdgeDriverOutputPath -Force;
+    Move-Item "$TempFileUnzipPath/msedgedriver" -Destination $EdgeDriverOutputPath -Force;
 }
 ElseIf ($IsMacOS) {
     Invoke-WebRequest $EdgedriverUrl -OutFile $TempZipFilePath;
     Expand-Archive $TempZipFilePath -DestinationPath $TempFileUnzipPath;
-    Move-Item "$TempFileUnzipPath/edgedriver" -Destination $EdgeDriverOutputPath -Force;
+    Move-Item "$TempFileUnzipPath/msedgedriver" -Destination $EdgeDriverOutputPath -Force;
     chmod +x "$EdgeDriverOutputPath";
 }
 Else {
