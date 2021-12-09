@@ -12,7 +12,7 @@ program
 
 program.parse(process.argv);
 
-const { browser, driverPath, headless, selectors: autoImportSelectors } = program.opts();
+var { browser, driverPath, headless, selectors: autoImportSelectors } = program.opts();
 
 if(!browser) browser = 'chrome';
 
@@ -86,7 +86,7 @@ async function installDriver() {
     }
     Install-Driver `;
     
-    if(chromedriverPath) {
+    if(driverPath) {
         script += driverPath;
     } else {
         script += path.resolve(__dirname, '../chromedriver');
