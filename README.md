@@ -28,11 +28,11 @@ Refer to the [Official Selenium Documentation](https://www.selenium.dev/document
 ### Example Test
 #### test.js
 ```javascript
-const ChromedriverFactory = require('selenium-repl/ChromedriverFactory'),
+const DriverFactory = require('selenium-repl/DriverFactory'),
     LoginPage = require('./pages/LoginPage');
 
 function test() {
-    var driver = new ChromedriverFactory().driver;
+    var driver = new DriverFactory('chrome').driver;
 
     driver.get('https://www.google.com');
 
