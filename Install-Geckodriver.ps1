@@ -28,7 +28,7 @@ Function Set-Geckodriver-Location {
         If($PSScriptRoot) {
              Push-Location $PSScriptRoot;
         }
-        npm run setup firefox (Get-ChildItem $ChromeDriverOutputPath).DirectoryName;
+        npm run setup firefox (Get-ChildItem $GeckoDriverOutputPath).DirectoryName;
         If($PSScriptRoot) {
             Pop-Location;
         }
