@@ -24,13 +24,10 @@ function getInstallScript() {
     switch (browser) {
         case 'chrome':
             return 'Install-Chromedriver.ps1';
-            break;
         case 'edge':
             return 'Install-Edgedriver.ps1';
-            break;
         case 'firefox':
             return 'Install-Geckodriver.ps1';
-            break;
         default:
             throw "Unsupported Browser";
     }
