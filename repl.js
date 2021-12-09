@@ -72,7 +72,7 @@ var myrepl;
 
 module.exports = (driverPath, {browser, headless, autoImportSelectors}) => {
     
-    globalThis.Options = new require(`selenium-webdriver/${this.browser}`).Options;
+    globalThis.Options = new require(`selenium-webdriver/${browser}`).Options;
 
     if(driverPath) {
         process.env.DRIVER_PATH = driverPath;
