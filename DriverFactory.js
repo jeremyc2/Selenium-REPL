@@ -12,7 +12,14 @@ class DriverFactory {
     }
 
     addDriverPath(browser) {
-        const driverPath = process.env[`${browser.toUpperCase()}DRIVER_PATH`];
+        var prefix;
+        if(browser == 'firefox') {
+            prefix = 'GECKO';
+        } else {
+            prefix = browser.toUpperCase();
+        }
+        
+        const driverPath = process.env[`${prefix}DRIVER_PATH`];
 
         if(driverPath && process.env.PATH.split(path.delimiter).every(x => x != driverPath)) {
             process.env.PATH = driverPath + path.delimiter + process.env.PATH;
