@@ -24,4 +24,7 @@ if(fs.existsSync(envPath)) {
 
 if(fileText.indexOf(driver) === -1) {
     fs.appendFileSync(envPath, content);
+} else {
+    var newContent = fileText.replace(new RegExp(`^${driver}.*\\n?`, 'm'), '') + content;
+    fs.writeFileSync(envPath, newContent);
 }
