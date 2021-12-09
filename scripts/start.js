@@ -20,6 +20,23 @@ function quote(text) {
     return text? `'${text}'`: null;
 }
 
+function getInstallScript(browser) {
+    switch (browser) {
+        case 'chrome':
+            return 'Install-Chromedriver.ps1';
+            break;
+        case 'edge':
+            return 'Install-Edgedriver.ps1';
+            break;
+        case 'firefox':
+            return 'Install-Geckodriver.ps1';
+            break;
+        default:
+            throw "Unsupported Browser";
+            break;
+    }
+}
+
 function compareNodeVersion(version) {
   const oldParts = process.version.substring(1).split('.');
   const newParts = version.split('.');
@@ -64,9 +81,8 @@ async function spawnShell(script, isPowershell, setWorkingDirectory) {
 
 async function installDriver() {
 
-    // TODO
     var script = `Function Install-Driver {
-    ${fs.readFileSync(path.resolve(__dirname, '../Install-Chromedriver.ps1'))}
+    ${fs.readFileSync(path.resolve(__dirname, `../${getInstallScript(browser)}`))}
     }
     Install-Driver `;
     
