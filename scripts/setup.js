@@ -6,7 +6,14 @@ const browser = process.argv[2],
 
 if(typeof driverPath === 'undefined') return;
 
-const content = `\n${browser.toUpperCase()}DRIVER_PATH='${driverPath}'`;
+var driver;
+if(browser == 'firefox') {
+    driver = 'GECKO';
+} else {
+    driver = browser.toUpperCase();
+}
+
+const content = `\n${driver}DRIVER_PATH='${driverPath}'`;
 
 const envPath = path.resolve(__dirname, '../.env')
 
@@ -15,6 +22,6 @@ if(fs.existsSync(envPath)) {
     fileText = fs.readFileSync(envPath, {encoding: 'utf8'});
 }
 
-if(fileText.indexOf(browser.toUpperCase()) === -1) {
+if(fileText.indexOf(driver) === -1) {
     fs.appendFileSync(envPath, content);
 }
