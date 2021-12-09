@@ -58,6 +58,8 @@ function getFilename() {
     if(process.platform === 'win32') {
         filename += '.exe';
     }
+    
+    return filename;
 }
 
 function compareNodeVersion(version) {
