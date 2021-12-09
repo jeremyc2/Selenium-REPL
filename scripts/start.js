@@ -5,13 +5,14 @@ const { program } = require('commander'),
     path = require('path');
 
 program
-    .option('-c, --chromedriverPath <path>', 'folder location of Chromedriver')
+    .option('-b, --browser <browser>', 'chrome, edge, or firefox')
+    .option('-d, --driverPath <path>', 'folder location of webdriver')
     .option('-h --headless', 'webdriver headless mode')
-    .option('-s --importSelectors', 'add additional selector functions to the REPL');
+    .option('-s --selectors', 'add additional selector functions to the REPL');
 
 program.parse(process.argv);
 
-const { chromedriverPath, headless, importSelectors: autoImportSelectors } = program.opts();
+const { browser, driverPath, headless, selectors: autoImportSelectors } = program.opts();
 
 function quote(text) {
     return text? `'${text}'`: null;
@@ -67,7 +68,7 @@ async function installChromedriver() {
     Install-Chromedriver `;
     
     if(chromedriverPath) {
-        script += chromedriverPath;
+        script += driverPath;
     } else {
         script += path.resolve(__dirname, '../chromedriver');
 
@@ -86,16 +87,16 @@ async function startREPL() {
             require('${
                 JSON.stringify(path.resolve(__dirname, '../repl'))
             }')(${
-                quote(chromedriverPath)
+                quote(driverPath)
             }, ${
-                JSON.stringify({headless, autoImportSelectors})
+                JSON.stringify({browser, headless, autoImportSelectors})
             }) \
          } catch { \
             process.exit(1) \
          }"`;
 
     if(compareNodeVersion('16.6.0')) {
-        require('../repl')(chromedriverPath, {headless, autoImportSelectors});
+        require('../repl')(driverPath, {browser, headless, autoImportSelectors});
     } else {
         await spawnShell(altScript);
     }
