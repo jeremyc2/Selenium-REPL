@@ -6,8 +6,8 @@ class DriverFactory {
         require('dotenv').config({ path: path.resolve(__dirname, '.env') });
 
         this.browser = browser == 'edge'? 'MicrosoftEdge': browser;
-        this.options = options;
         this.headless = headless;
+        this.options = options;
         this.addDriverPath();
     }
 
