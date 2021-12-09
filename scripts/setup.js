@@ -13,13 +13,14 @@ if(browser == 'firefox') {
     driver = browser.toUpperCase();
 }
 
-const content = `\n${driver}DRIVER_PATH='${driverPath}'`;
+var content = `${driver}DRIVER_PATH='${driverPath}'`;
 
 const envPath = path.resolve(__dirname, '../.env')
 
 var fileText = '';
 if(fs.existsSync(envPath)) {
     fileText = fs.readFileSync(envPath, {encoding: 'utf8'});
+    content = '\n' + content;
 }
 
 if(fileText.indexOf(driver) === -1) {
