@@ -22,7 +22,7 @@ Open PowerShell. Enter ```npx selenium-repl```.
 ## Setup
 *If you have PowerShell installed, execute ***Setup.ps1*** and skip the remaining setup instructions.*  
 1. In a Terminal Window, navigate to this repository and enter the command ```npm install```
-2. Enter the command ```npm run setup DRIVER_PATH``` replacing ***DRIVER_PATH*** with the path to your folder containing webdriver†
+2. Enter the command ```npm run setup BROWSER DRIVER_PATH``` replacing ***BROWSER*** with chrome, edge, or firefox and ***DRIVER_PATH*** with the path to your folder containing webdriver†
 
 ## Run the REPL
 *If you have PowerShell installed, execute **Start.ps1** and skip the remaining steps.*
