@@ -6,6 +6,16 @@
 1. Make sure you have [NodeJS](https://nodejs.org/en/) installed
 2. If you do not have PowerShell installed, make sure you have downloaded the webdriver executable
 
+## Options
+```
+Options:
+  -b, --browser <browser>  chrome, edge, or firefox
+  -d, --driverPath <path>  folder location of webdriver
+  -h --headless            webdriver headless mode
+  -s --selectors           add additional selector functions to the REPL
+  --help                   display help for command
+```
+
 ## Quickstart
 Open PowerShell. Enter ```npx selenium-repl```.
 
