@@ -1,10 +1,10 @@
 # Getting Started
 <img src="https://jeremyc2.github.io/Selenium-REPL/REPL-Infographic.svg" width="400">
 
-*Currently only supports testing in Google Chrome*
+*Currently supports testing in Google Chrome, Edge, and Firefox*
 ## Before you begin
 1. Make sure you have [NodeJS](https://nodejs.org/en/) installed
-2. If you do not have PowerShell installed, make sure you have downloaded the [Chromedriver](https://chromedriver.chromium.org/downloads) executable
+2. If you do not have PowerShell installed, make sure you have downloaded the webdriver executable
 
 ## Quickstart
 Open PowerShell. Enter ```npx selenium-repl```.
@@ -12,7 +12,7 @@ Open PowerShell. Enter ```npx selenium-repl```.
 ## Setup
 *If you have PowerShell installed, execute ***Setup.ps1*** and skip the remaining setup instructions.*  
 1. In a Terminal Window, navigate to this repository and enter the command ```npm install```
-2. Enter the command ```npm run setup CHROMEDRIVER_PATH``` replacing ***CHROMEDRIVER_PATH*** with the path to your folder containing chromedriver.exe†
+2. Enter the command ```npm run setup DRIVER_PATH``` replacing ***DRIVER_PATH*** with the path to your folder containing webdriver†
 
 ## Run the REPL
 *If you have PowerShell installed, execute **Start.ps1** and skip the remaining steps.*
@@ -85,4 +85,4 @@ module.exports = LoginPage;
 
 [JavaScript API Documentation](https://www.selenium.dev/selenium/docs/api/javascript/)
 
-†*If the chromedriver folder is your current directory or if it is in your PATH, you may omit this step.*
+†*If the webdriver folder is your current directory or if it is in your PATH, you may omit this step.*
