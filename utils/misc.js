@@ -8,6 +8,20 @@ function getFullURL(url) {
     return url;
 }
 
+var once = function (func) {
+    var result;
+  
+    return function () {
+      if (func) {
+        result = func.apply(this, arguments);
+        func = null;
+      }
+  
+      return result;
+    }
+  };
+
 module.exports = {
-    getFullURL
+    getFullURL,
+    once
 }

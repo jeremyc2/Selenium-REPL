@@ -1,7 +1,6 @@
 const DriverFactory = require('./DriverFactory'),
     CustomEvent = require('./utils/CustomEvent'),
     selenium = require('selenium-webdriver'),
-    chrome = require('selenium-webdriver/chrome'),
     path = require('path');
 
 const events = {
@@ -9,8 +8,29 @@ const events = {
     driverBuilt: new CustomEvent()
 }
 
-function buildDriver() {
-    var driver = new DriverFactory('chrome', chromeOptions).driver;
+function buildDriver(browser, headless) {
+
+    if(browser) {
+        globalThis.browser = browser
+    } else if(globalThis.browser) {
+        browser = globalThis.browser;
+    } else {
+        return;
+    }
+
+    if(headless) {
+        globalThis.headless = headless
+    } else if(globalThis.headless) {
+        headless = globalThis.headless;
+    }
+
+    var driver;
+    if(browser == 'chrome' || browser == 'edge') {
+        driver = new DriverFactory(browser, {options: getChromeOptions(), headless}).driver;
+    } else {
+        driver = new DriverFactory(browser).driver;
+    }
+
     events.replStarted.once(() => {
         myrepl.context.driver = driver;
         events.driverBuilt.emit();
@@ -43,25 +63,24 @@ function importSelectors() {
     });
 }
 
-var chromeOptions = new chrome.Options()
-    .addArguments(`load-extension=${path.resolve(__dirname, 'extension')}`);
+var getChromeOptions = require('./utils/misc').once(() => {
+    const chrome = require('selenium-webdriver/chrome');
+    return new chrome.Options()
+        .addArguments(`load-extension=${path.resolve(__dirname, 'extension')}`);
+})
 
 var myrepl;
 
 module.exports = (driverPath, {browser, headless, autoImportSelectors}) => {
 
     if(driverPath) {
-        process.env.CHROMEDRIVER_PATH = chromedriverPath;
-    }
-    
-    if(headless) {
-        chromeOptions.headless();
+        process.env.DRIVER_PATH = driverPath;
     }
 
     try {
-        buildDriver();
+        buildDriver(browser, headless);
     } catch (e) {
-        throw "Error building chromedriver";
+        throw "Error building driver";
     }
 
     if(autoImportSelectors) {
@@ -73,7 +92,6 @@ module.exports = (driverPath, {browser, headless, autoImportSelectors}) => {
 
     Object.assign(myrepl.context, {
         ...selenium,
-        chrome,
         buildDriver,
         get,
         importSelectors
