@@ -14,6 +14,8 @@ program.parse(process.argv);
 
 const { browser, driverPath, headless, selectors: autoImportSelectors } = program.opts();
 
+if(!browser) browser = 'chrome';
+
 function quote(text) {
     return text? `'${text}'`: null;
 }
