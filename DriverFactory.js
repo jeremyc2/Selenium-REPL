@@ -26,6 +26,8 @@ class DriverFactory {
             if(this.headless) {
                 this._options.headless();
             }
+            
+            if(this.browser == 'firefox') return;
             const excludeSwitches = this._options.options_.excludeSwitches;
             if(!excludeSwitches || excludeSwitches.indexOf(defaultSwitch) === -1) {
                 this._options.excludeSwitches(defaultSwitch);
@@ -36,6 +38,8 @@ class DriverFactory {
             if(this.headless) {
                 this._options.headless();
             }
+            
+            if(this.browser == 'firefox') return;
             this._options.excludeSwitches(defaultSwitch);
         }
     }
