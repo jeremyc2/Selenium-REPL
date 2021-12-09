@@ -8,4 +8,8 @@ if(typeof driverPath === 'undefined') return;
 
 const content = `\n${browser.toUpperCase()}DRIVER_PATH='${driverPath}'`;
 
-fs.appendFileSync(path.resolve(__dirname, '../.env'), content);
+var fileText = fs.readFileSync(path.resolve(__dirname, '../.env'), {encoding: 'utf8'});
+
+if(fileText.indexOf(browser.toUpperCase()) === -1) {
+    fs.appendFileSync(path.resolve(__dirname, '../.env'), content);
+}
