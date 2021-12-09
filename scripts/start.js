@@ -125,6 +125,7 @@ async function startREPL() {
                 quote(driverPath)
             }, ${
                 JSON.stringify({browser, headless, autoImportSelectors})
+                    .replace(/"/g, "'")
             }) \
          } catch { \
             process.exit(1) \
