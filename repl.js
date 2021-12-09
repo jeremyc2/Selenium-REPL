@@ -64,14 +64,15 @@ function importSelectors() {
 }
 
 var getChromeOptions = require('./utils/misc').once(() => {
-    const chrome = require('selenium-webdriver/chrome');
-    return new chrome.Options()
+    return new Options()
         .addArguments(`load-extension=${path.resolve(__dirname, 'extension')}`);
 })
 
 var myrepl;
 
 module.exports = (driverPath, {browser, headless, autoImportSelectors}) => {
+    
+    globalThis.Options = new require(`selenium-webdriver/${this.browser}`).Options;
 
     if(driverPath) {
         process.env.DRIVER_PATH = driverPath;
