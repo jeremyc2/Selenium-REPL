@@ -60,12 +60,13 @@ async function spawnShell(script, isPowershell, setWorkingDirectory) {
     });
 }
 
-async function installChromedriver() {
+async function installDriver() {
 
-    var script = `Function Install-Chromedriver {
+    // TODO
+    var script = `Function Install-Driver {
     ${fs.readFileSync(path.resolve(__dirname, '../Install-Chromedriver.ps1'))}
     }
-    Install-Chromedriver `;
+    Install-Driver `;
     
     if(chromedriverPath) {
         script += driverPath;
@@ -107,7 +108,7 @@ async function startREPL() {
     try {
         await startREPL();
     } catch {
-        await installChromedriver();
+        await installDriver();
         await startREPL();
     }
 })()
