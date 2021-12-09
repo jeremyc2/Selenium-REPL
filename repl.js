@@ -28,7 +28,7 @@ function buildDriver(browser, headless) {
     if(browser == 'chrome' || browser == 'edge') {
         driver = new DriverFactory(browser, {options: getChromeOptions(), headless}).driver;
     } else {
-        driver = new DriverFactory(browser).driver;
+        driver = new DriverFactory(browser, {headless}).driver;
     }
 
     events.replStarted.once(() => {
