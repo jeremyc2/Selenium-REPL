@@ -6,6 +6,6 @@ const browser = process.argv[2],
 
 if(typeof driverPath === 'undefined') return;
 
-const content = `${browser.toUpperCase()}DRIVER_PATH='${driverPath}'`;
+const content = `\n${browser.toUpperCase()}DRIVER_PATH='${driverPath}'`;
 
-fs.writeFileSync(path.resolve(__dirname, '../.env'), content);
+fs.appendFileSync(path.resolve(__dirname, '../.env'), content);
