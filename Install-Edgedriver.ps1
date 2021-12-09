@@ -31,7 +31,7 @@ Function Set-Edgedriver-Location {
         If($PSScriptRoot) {
              Push-Location $PSScriptRoot;
         }
-        npm run setup edge (Get-ChildItem $ChromeDriverOutputPath).DirectoryName;
+        npm run setup edge (Get-ChildItem $EdgeDriverOutputPath).DirectoryName;
         If($PSScriptRoot) {
             Pop-Location;
         }
