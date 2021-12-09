@@ -20,7 +20,7 @@ function quote(text) {
     return text? `'${text}'`: null;
 }
 
-function getInstallScript(browser) {
+function getInstallScript() {
     switch (browser) {
         case 'chrome':
             return 'Install-Chromedriver.ps1';
@@ -34,6 +34,29 @@ function getInstallScript(browser) {
         default:
             throw "Unsupported Browser";
             break;
+    }
+}
+
+function getFilename() {
+    var filename;
+
+    switch (browser) {
+        case 'chrome':
+            filename = 'chromedriver';
+            break;
+        case 'edge':
+            filename = 'msedgedriver';
+            break;
+        case 'firefox':
+            filename = 'geckodriver';
+            break;
+        default:
+            throw "Unsupported Browser";
+            break;
+    }
+
+    if(process.platform === 'win32') {
+        filename += '.exe';
     }
 }
 
@@ -82,18 +105,14 @@ async function spawnShell(script, isPowershell, setWorkingDirectory) {
 async function installDriver() {
 
     var script = `Function Install-Driver {
-    ${fs.readFileSync(path.resolve(__dirname, `../${getInstallScript(browser)}`))}
+    ${fs.readFileSync(path.resolve(__dirname, `../${getInstallScript()}`))}
     }
     Install-Driver `;
     
     if(driverPath) {
         script += driverPath;
     } else {
-        script += path.resolve(__dirname, '../chromedriver');
-
-        if(process.platform === 'win32') {
-            script += '.exe';
-        }
+        script += path.resolve(__dirname, `../${getFilename()}`);
     }
 
     return spawnShell(script, true, true);
