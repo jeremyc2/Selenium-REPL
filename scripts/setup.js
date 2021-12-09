@@ -1,10 +1,11 @@
 const fs = require('fs'),
     path = require('path');
 
-const driverPath = process.argv[2];
+const browser = process.argv[2],
+    driverPath = process.argv[3];
 
 if(typeof driverPath === 'undefined') return;
 
-const content = `DRIVER_PATH='${driverPath}'`;
+const content = `${browser.toUpperCase()}DRIVER_PATH='${driverPath}'`;
 
 fs.writeFileSync(path.resolve(__dirname, '../.env'), content);

@@ -8,11 +8,11 @@ class DriverFactory {
         this.browser = browser == 'edge'? 'MicrosoftEdge': browser;
         this.headless = headless;
         this.options = options;
-        this.addDriverPath();
+        this.addDriverPath(browser);
     }
 
-    addDriverPath() {
-        const driverPath = process.env.DRIVER_PATH;
+    addDriverPath(browser) {
+        const driverPath = process.env[`${browser.toUpperCase()}DRIVER_PATH`];
 
         if(driverPath && process.env.PATH.split(path.delimiter).every(x => x != driverPath)) {
             process.env.PATH = driverPath + path.delimiter + process.env.PATH;
