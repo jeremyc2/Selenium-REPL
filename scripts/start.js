@@ -33,7 +33,6 @@ function getInstallScript() {
             break;
         default:
             throw "Unsupported Browser";
-            break;
     }
 }
 
@@ -52,7 +51,6 @@ function getFilename() {
             break;
         default:
             throw "Unsupported Browser";
-            break;
     }
 
     if(process.platform === 'win32') {
