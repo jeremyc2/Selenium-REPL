@@ -31,7 +31,7 @@ Function Set-Chromedriver-Location {
         If($PSScriptRoot) {
              Push-Location $PSScriptRoot;
         }
-        npm run setup (Get-ChildItem $ChromeDriverOutputPath).DirectoryName;
+        npm run setup chrome (Get-ChildItem $ChromeDriverOutputPath).DirectoryName;
         If($PSScriptRoot) {
             Pop-Location;
         }
