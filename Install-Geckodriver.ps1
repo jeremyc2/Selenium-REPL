@@ -75,11 +75,18 @@ Function Get-GeckodriverUrl {
     param(
         [Parameter(Mandatory = $false)]
         [string]$GeckodriverVersion = (Get-GeckodriverVersion),
-        [ValidateSet("win32", "win64", "mac64", "linux64", "arm64")]
+        [ValidateSet("win32", "win64", "macos", "linux32", "linux64")]
         [string]$System = (Get-SystemString)
     )
 
-    "https://github.com/mozilla/geckodriver/releases/download/$GeckodriverVersion/geckodriver-$GeckodriverVersion-$System.zip"
+    $BaseUrl = "https://github.com/mozilla/geckodriver/releases/download/$GeckodriverVersion/geckodriver-$GeckodriverVersion-$System";
+
+    If($System -eq "win32" -or $System -eq "win64") {
+        $BaseUrl + ".zip";
+    }
+    Else {
+        $BaseUrl + ".tar.gz"
+    }
 
 }
 
@@ -100,7 +107,15 @@ If (($ForceDownload -eq $False) -and (Test-path $GeckoDriverOutputPath)) {
 }
 
 $TempFilePath = [System.IO.Path]::GetTempFileName();
-$TempZipFilePath = $TempFilePath.Replace(".tmp", ".zip");
+
+If($IsWindows -or $Env:OS) {
+    $Suffix = ".zip";
+}
+Else {
+    $Suffix = ".tar.gz";
+}
+
+$TempZipFilePath = $TempFilePath.Replace(".tmp", $Suffix);
 Rename-Item -Path $TempFilePath -NewName $TempZipFilePath;
 $TempFileUnzipPath = $TempFilePath.Replace(".tmp", "");
 If ($IsWindows -or $Env:OS) {
