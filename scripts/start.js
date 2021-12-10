@@ -16,6 +16,10 @@ var { browser, driverPath, headless, selectors: autoImportSelectors } = program.
 
 if(!browser) browser = 'chrome';
 
+if(driverPath) {
+    driverPath = path.resolve(driverPath);
+}
+
 function quote(text) {
     return text? `'${text}'`: null;
 }
