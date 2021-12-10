@@ -4,4 +4,4 @@ const { spawn } = require('child_process');
 var args = process.argv.slice(2),
     opts = {cwd: __dirname, stdio: 'inherit', shell: process.platform === 'win32'? 'powershell.exe': 'pwsh'};
 
-spawn('./Install-Edgedriver.ps1', args, opts);
+spawn('../Install-Edgedriver.ps1', args, opts);
