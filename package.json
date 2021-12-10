@@ -12,7 +12,12 @@
     "setup": "node scripts/setup.js",
     "start": "node scripts/start.js"
   },
-  "bin": "./scripts/start.js",
+  "bin": {
+    "selenium-repl": "./scripts/start.js",
+    "install-chromedriver": "./Install-Chromedriver.ps1",
+    "install-edgedriver": "./Install-Edgedriver.ps1",
+    "install-geckodriver": "./Install-Geckodriver.ps1"
+  },
   "files": [
     "*"
   ],
