@@ -49,19 +49,20 @@ Function Get-SystemString {
             "win64"
         }
         Else {
-            "Win32"
+            "win32"
         }
     }
     ElseIf ($IsLinux) {
-        "linux64"
+        If ([Environment]::Is64BitOperatingSystem) {
+            "linux64"
+        }
+        Else {
+            "linux32"
+        }
     }
     ElseIf ($IsMacOS) {
-        "mac64"
+        "macos"
     }
-    Else {
-        "arm64"
-    }
-
 }
 
 Function Get-GeckodriverVersion {
