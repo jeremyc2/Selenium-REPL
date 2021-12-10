@@ -126,12 +126,14 @@ If ($IsWindows -or $Env:OS) {
 }
 ElseIf ($IsLinux) {
     Invoke-WebRequest $GeckodriverUrl -OutFile $TempZipFilePath;
-    Expand-Archive $TempZipFilePath -DestinationPath $TempFileUnzipPath;
+    New-Item -Path $TempFileUnzipPath -ItemType Directory | Out-Null;
+    tar -xf $TempZipFilePath -C $TempFileUnzipPath;
     Move-Item "$TempFileUnzipPath/geckodriver" -Destination $GeckoDriverOutputPath -Force;
 }
 ElseIf ($IsMacOS) {
     Invoke-WebRequest $GeckodriverUrl -OutFile $TempZipFilePath;
-    Expand-Archive $TempZipFilePath -DestinationPath $TempFileUnzipPath;
+    New-Item -Path $TempFileUnzipPath -ItemType Directory | Out-Null;
+    tar -xf $TempZipFilePath -C $TempFileUnzipPath;
     Move-Item "$TempFileUnzipPath/geckodriver" -Destination $GeckoDriverOutputPath -Force;
     chmod +x "$GeckoDriverOutputPath";
 }
