@@ -14,9 +14,9 @@
   },
   "bin": {
     "selenium-repl": "./scripts/start.js",
-    "install-chromedriver": "./Install-Chromedriver.ps1",
-    "install-edgedriver": "./Install-Edgedriver.ps1",
-    "install-geckodriver": "./Install-Geckodriver.ps1"
+    "install-chromedriver": "./scripts/installChromedriver.js",
+    "install-edgedriver": "./scripts/installEdgedriver.js",
+    "install-geckodriver": "./scripts/installGeckodriver.js"
   },
   "files": [
     "*"
