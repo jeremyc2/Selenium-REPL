@@ -108,3 +108,7 @@ main/pages/*
 main/tests/*
 chromedriver.exe
 chromedriver
+msedgedriver
+msedgedriver.exe
+geckodriver
+geckodriver.exe

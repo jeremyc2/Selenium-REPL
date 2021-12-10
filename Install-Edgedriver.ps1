@@ -55,6 +55,17 @@ function Get-EdgeVersion {
             Throw "Edge not found in registry";
         }
     }
+    ElseIf ($IsMacOS) {
+        $EdgePath = '/Applications/Microsoft Edge.app/Contents/MacOS/Microsoft Edge';
+        If (Test-Path $EdgePath) {
+            $Version = & $EdgePath --version;
+            $Version = $Version.Replace("Microsoft Edge ", "").Trim();
+            $Version;
+        }
+        Else {
+            Throw "Microsoft Edge not found on your MacOS machine";
+        }  
+    }
     Else {
         Throw "Your operating system is not supported by this script.";
     }
