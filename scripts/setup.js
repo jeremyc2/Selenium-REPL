@@ -1,10 +1,12 @@
 const fs = require('fs'),
     path = require('path');
 
-const browser = process.argv[2],
+var browser = process.argv[2],
     driverPath = process.argv[3];
 
 if(typeof driverPath === 'undefined') return;
+
+driverPath = path.resolve(driverPath);
 
 var driver;
 if(browser == 'firefox') {
