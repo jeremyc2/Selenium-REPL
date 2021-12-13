@@ -4,6 +4,18 @@ const { program } = require('commander'),
     fs = require('fs'),
     path = require('path');
 
+const mainScripts = [
+    'installChromedriver',
+    'installEdgedriver',
+    'installGeckodriver'
+]
+
+if(mainScripts.includes(process.argv[2])) {
+    opts = {cwd: __dirname, stdio: 'inherit', shell: true};
+    spawn(`node ${process.argv[2]}.js`, process.argv.slice(3), opts);
+    return;
+}
+
 program
     .option('-b, --browser <browser>', 'chrome, edge, or firefox')
     .option('-d, --driverPath <path>', 'folder location of webdriver')
