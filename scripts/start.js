@@ -102,9 +102,9 @@ async function spawnShell(script, isPowershell, setWorkingDirectory) {
             opts.cwd = path.resolve(__dirname, '../');
         }
 
-        const powershell = spawn(script, opts);
+        const shell = spawn(script, opts);
     
-        powershell.on('close', (code) => {
+        shell.on('close', (code) => {
             
           if(code == 0) {
               resolve();
