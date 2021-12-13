@@ -11,7 +11,7 @@ const mainScripts = [
 ]
 
 if(mainScripts.includes(process.argv[2])) {
-    var script = `${path.resolve(__dirname, process.argv(2))}.js`,
+    var script = `${path.resolve(__dirname, process.argv[2])}.js`,
         opts = {stdio: 'inherit', shell: true};
     spawn(`node ${script}`, process.argv.slice(3), opts);
     return;
